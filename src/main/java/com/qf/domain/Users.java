@@ -47,8 +47,7 @@ public class Users {
     @Column(name = "u_statue")
     private  Integer uStatue;//用户状态
 
-
-
-
+    @Column(name = "u_email")
+    private  Integer uEmail;
 
 }

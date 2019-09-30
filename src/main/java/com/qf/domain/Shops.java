@@ -25,7 +25,7 @@ public class Shops {
     @Column(name = "shop_price")
     private float shopPrice;
 
-    @Column(name = "shop_number")
+    @Column(name = "shop_nummber")
     private Integer shopNumber;//商品库存
 
     @Column(name = "product_time")
@@ -40,4 +40,8 @@ public class Shops {
 
     @Column(name = "shop_info")
     private String shopInfo;//商品详情描述
+
+    @Column(name = "sk_id")
+    private String skId;
+
 }

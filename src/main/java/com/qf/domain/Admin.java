@@ -30,4 +30,7 @@ public class Admin {
 
     @Column(name = "a_statue")
     private Integer aStatue;//管理员的状态
+
+    @Column(name = "a_email")
+    private String aEmail;
 }
