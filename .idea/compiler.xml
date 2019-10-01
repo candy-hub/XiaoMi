@@ -9,8 +9,5 @@
         <module name="XiaoMi" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="XiaoMi" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

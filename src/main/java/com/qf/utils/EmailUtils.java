@@ -1,8 +1,8 @@
 package com.qf.utils;
 
 
-import com.qf.dao.UserCodeRespository;
-import com.qf.domain.UserCode;
+import com.qf.dao.CodeRepository;
+import com.qf.domain.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -21,7 +21,7 @@ public class EmailUtils {
     private JavaMailSender javamailSender;
 
     @Autowired
-    private UserCodeRespository userCodeRespository;
+    private CodeRepository codeRepository;
 
     public String sendEmail(String sendTo){
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
@@ -32,11 +32,11 @@ public class EmailUtils {
         simpleMailMessage.setTo(sendTo);
         try{
             javamailSender.send(simpleMailMessage);
-            UserCode userCode=new UserCode();
-            userCode.setUsername(sendTo);
-            userCode.setCode(code);
-            userCode.setStatus(1); //设置当前验证码的状态
-            userCodeRespository.save(userCode);
+            Code co=new Code();
+            co.setUEmail(sendTo);
+            co.setCCode(code);
+            co.setCStatue(1); //设置当前验证码的状态
+            codeRepository.save(co);
             return code;
         }catch (Exception e){
             e.printStackTrace();
