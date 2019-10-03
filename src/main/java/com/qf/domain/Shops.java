@@ -22,10 +22,13 @@ public class Shops {
     @Column(name = "shop_pic")
     private String shopPic;
 
+    @Column(name = "shop_bigpic")
+    private String shopBigPic;
+
     @Column(name = "shop_price")
     private float shopPrice;
 
-    @Column(name = "shop_nummber")
+    @Column(name = "shop_number")
     private Integer shopNumber;//商品库存
 
     @Column(name = "product_time")
