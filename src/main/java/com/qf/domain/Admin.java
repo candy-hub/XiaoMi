@@ -1,5 +1,6 @@
 package com.qf.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,7 +27,10 @@ public class Admin {
     private Number aTell;
 
     @Column(name = "create_time")
+//    入参格式
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    出参格式
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;//注册时间
 
     @Column(name = "a_statue")
