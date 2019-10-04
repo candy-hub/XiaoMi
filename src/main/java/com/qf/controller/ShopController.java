@@ -29,6 +29,7 @@ public class ShopController {
     //一级菜单
     @RequestMapping("/show1")
     public List<ShopKinds> show1(){
+        //System.out.println(shopKindsService.show1());
         return shopKindsService.show1();
     }
 

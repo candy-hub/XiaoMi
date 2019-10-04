@@ -45,6 +45,6 @@ public class Shops {
     private String shopInfo;//商品详情描述
 
     @Column(name = "sk_id")
-    private String skId;
+    private Integer skId;
 
 }
