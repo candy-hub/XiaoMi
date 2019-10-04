@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -26,7 +27,7 @@ public class Admin {
 
     @Column(name = "create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Data createTime;//注册时间
+    private Date createTime;//注册时间
 
     @Column(name = "a_statue")
     private Integer aStatue;//管理员的状态

@@ -28,4 +28,7 @@ public class Cart {
 
     @Column(name = "shop_count")
     private Integer shopCount;
+
+    @Column(name = "shop_total")
+    private Float shopTotal;
 }

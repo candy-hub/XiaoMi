@@ -1,6 +1,7 @@
 package com.qf.service.impl;
 
 import com.qf.dao.ShopsRepository;
+import com.qf.domain.Shops;
 import com.qf.service.ShopsService;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,8 @@ public class ShopsServiceImpl implements ShopsService {
     private ShopsRepository shopsRepository;
 
 
+    @Override
+    public Shops findByShopId(int shopId) {
+        return shopsRepository.findByShopId(shopId);
+    }
 }
