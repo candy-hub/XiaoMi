@@ -42,22 +42,14 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart updateCart(AddCart cart) {
-        Shops shop=cart.getShop();
-        Cart c=new Cart();
-        Cart c2=cartRepository.findByShopName(shop.getShopName());
-        if (c2!=null){
-            c2.setShopCount(cart.getNum());
-            c2.setShopTotal(cart.getTotal());
-            return cartRepository.save(c2);
-        }else {
-            c.setShopCount(cart.getNum());
-            c.setShopName(shop.getShopName());
-            c.setShopPic(shop.getShopPic());
-            c.setShopPrice(shop.getShopPrice());
-            c.setShopTotal(cart.getTotal());
-            c.setUId(1); //待定
-            return cartRepository.save(c);
-        }
+    public Cart updateCart(Cart cart) {
+
+        return cartRepository.save(cart);
+
+    }
+
+    @Override
+    public void deleteById(int cId) {
+        cartRepository.deleteById(cId);
     }
 }

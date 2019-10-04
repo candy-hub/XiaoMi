@@ -93,6 +93,19 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.32</version>
         </dependency>
+
+        <!--跨域传图片的依赖-->
+        <dependency>
+            <groupId>maven.com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
     </dependencies>
 
 

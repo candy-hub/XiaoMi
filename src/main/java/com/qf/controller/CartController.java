@@ -33,8 +33,14 @@ public class CartController {
 
     /*修改购物车数量*/
     @RequestMapping("/updateCart")
-    public Cart saveCart(@RequestBody AddCart cart){
+    public Cart saveCart(@RequestBody Cart cart){
 
         return cartService.updateCart(cart);
+    }
+
+    @RequestMapping("/deleteCart")
+    public String deleteCart(int cId){
+        cartService.deleteById(cId);
+        return "删除成功";
     }
 }
