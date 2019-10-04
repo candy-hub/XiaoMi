@@ -6,6 +6,7 @@ import com.qf.service.ShopsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ShopsServiceImpl implements ShopsService {
@@ -17,5 +18,10 @@ public class ShopsServiceImpl implements ShopsService {
     @Override
     public Shops findByShopId(int shopId) {
         return shopsRepository.findByShopId(shopId);
+    }
+
+    @Override
+    public List<Shops> show2(Integer skId) {
+        return shopsRepository.findBySkId(skId);
     }
 }

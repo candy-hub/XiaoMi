@@ -9,4 +9,6 @@ public interface ShopsRepository extends JpaRepository<Shops,Integer> {
 
     Shops findByShopId(int shopId);
 
+    List<Shops> findBySkId(Integer skId);
+
 }

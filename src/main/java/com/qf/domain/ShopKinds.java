@@ -16,6 +16,6 @@ public class ShopKinds {
     private Integer skId;
 
     @Column(name = "sk_name")
-    private Integer skName;//商品类别名
+    private String skName;//商品类别名
 
 }
