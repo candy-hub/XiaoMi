@@ -18,4 +18,9 @@ public interface ShopsService {
     void deleteShops(int shopId);
 
     Shops addShops(Shops shops);
+
+    Shops findShopsById(int shopId);
+
+    Shops updateShops(Shops Shops);
+
 }

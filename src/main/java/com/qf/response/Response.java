@@ -1,5 +1,6 @@
 package com.qf.response;
 
+import com.qf.domain.ShopKinds;
 import lombok.Data;
 
 import java.util.List;
@@ -8,4 +9,5 @@ import java.util.List;
 public class Response<T> {
     private List<T> list;
     private Long total;
+    private List<ShopKinds> shopKindsList;
 }

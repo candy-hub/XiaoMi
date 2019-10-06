@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.ShopKindsRepository;
 import com.qf.dao.ShopsRepository;
 import com.qf.domain.Shops;
 import com.qf.response.AddShops;
@@ -22,6 +23,9 @@ public class ShopsServiceImpl implements ShopsService {
     @Resource
     private ShopsRepository shopsRepository;
 
+    @Resource
+    private ShopKindsRepository shopKindsRepository;
+
 
     @Override
     public Shops findByShopId(int shopId) {
@@ -38,8 +42,12 @@ public class ShopsServiceImpl implements ShopsService {
         Pageable pages=PageRequest.of(page-1,size);
         Page<Shops> all=shopsRepository.findAll(pages);
         Response<Shops> r=new Response<>();
+
         r.setList(all.getContent());
         r.setTotal(all.getTotalElements());
+
+        r.setShopKindsList(shopKindsRepository.findAll());
+
         return r;
     }
 
@@ -50,6 +58,16 @@ public class ShopsServiceImpl implements ShopsService {
 
     @Override
     public Shops addShops(Shops shops) {
+        return shopsRepository.save(shops);
+    }
+
+    @Override
+    public Shops findShopsById(int shopId) {
+        return shopsRepository.findByShopId(shopId);
+    }
+
+    @Override
+    public Shops updateShops(Shops shops) {
         return shopsRepository.save(shops);
     }
 }

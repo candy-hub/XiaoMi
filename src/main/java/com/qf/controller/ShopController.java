@@ -81,9 +81,27 @@ public class ShopController {
         return shopsService.addShops(shops);
     }
 
+    @RequestMapping("/findShopsById/{shopId}")
+    public Shops findShopsById(@PathVariable int shopId){
+        return shopsService.findByShopId(shopId);
+    }
+
+    @RequestMapping("/updateShops")
+    public Shops updateShops(@RequestBody AddShops addShops){
+        MultipartFile file=addShops.getFile();
+        Shops shops=addShops.getShops();
+        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
+        if (Objects.isNull(file) || file.isEmpty()) {
+            logger.error("文件为空");
+        }else {
+            String path = uploadUtils.upload(file);
+            shops.setShopPic(path);
+        }
+        return shopsService.addShops(shops);
+    }
 
     /*
-    *商品类别
+    *后台商品类别管理
     */
     @RequestMapping("/findAllKinds/{page}/{size}")
     public Response findAllKinds(@PathVariable("page") int page, @PathVariable("size") int size){
