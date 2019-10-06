@@ -1,5 +1,6 @@
 package com.qf.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -33,6 +34,7 @@ public class Shops {
 
     @Column(name = "product_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date productTime;//生产日期
 
     @Column(name = "factory")

@@ -2,7 +2,15 @@ package com.qf.service.impl;
 
 import com.qf.dao.ShopsRepository;
 import com.qf.domain.Shops;
+import com.qf.response.AddShops;
+import com.qf.response.Response;
 import com.qf.service.ShopsService;
+import com.qf.utils.UploadUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,5 +31,25 @@ public class ShopsServiceImpl implements ShopsService {
     @Override
     public List<Shops> show2(Integer skId) {
         return shopsRepository.findBySkId(skId);
+    }
+
+    @Override
+    public Response findAllShops(int page, int size) {
+        Pageable pages=PageRequest.of(page-1,size);
+        Page<Shops> all=shopsRepository.findAll(pages);
+        Response<Shops> r=new Response<>();
+        r.setList(all.getContent());
+        r.setTotal(all.getTotalElements());
+        return r;
+    }
+
+    @Override
+    public void deleteShops(int shopId) {
+        shopsRepository.deleteById(shopId);
+    }
+
+    @Override
+    public Shops addShops(Shops shops) {
+        return shopsRepository.save(shops);
     }
 }
