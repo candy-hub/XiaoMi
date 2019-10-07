@@ -10,6 +10,8 @@ public interface ShopsService {
 
     List<Shops> show2(Integer skId);
 
+    List<Shops> showlbt(Integer status);
+
     /*
     * 后台商品管理
     */

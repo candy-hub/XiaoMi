@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,6 +46,12 @@ public class ShopController {
     public List<ShopKinds> show1(){
         //System.out.println(shopKindsService.show1());
         return shopKindsService.show1();
+    }
+
+    //轮播图
+    @RequestMapping("/showlbt")
+    public List<Shops> showlbt(){
+        return shopsService.showlbt(1);
     }
 
     //二级菜单
