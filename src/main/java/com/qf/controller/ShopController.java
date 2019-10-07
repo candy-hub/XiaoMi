@@ -60,6 +60,12 @@ public class ShopController {
           return shopsService.show2(skId);
     }
 
+    //热卖商品
+    @RequestMapping("/showRM")
+    public List<Shops> showRM(){
+        return shopsService.showRM(2);
+    }
+
 
     /*
      * 后台商品管理

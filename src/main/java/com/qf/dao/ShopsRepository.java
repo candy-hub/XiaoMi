@@ -13,4 +13,6 @@ public interface ShopsRepository extends JpaRepository<Shops,Integer> {
 
     List<Shops> findByStatus(Integer status);
 
+
+
 }

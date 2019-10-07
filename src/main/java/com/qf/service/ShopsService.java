@@ -12,6 +12,8 @@ public interface ShopsService {
 
     List<Shops> showlbt(Integer status);
 
+    List<Shops> showRM(Integer status);
+
     /*
     * 后台商品管理
     */
