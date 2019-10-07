@@ -12,7 +12,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "c_id")
-    private Integer cId;
+    private Integer cId;   //若在页面中用cId取不到值时，可用cid试一试
 
     @Column(name = "u_id")
     private Integer uId;

@@ -3,10 +3,7 @@ package com.qf.controller;
 import com.qf.domain.Cart;
 import com.qf.response.AddCart;
 import com.qf.service.CartService;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,7 +17,7 @@ public class CartController {
 
     @RequestMapping("/findAllCart")
     public List<Cart> findAll(){
-
+        //System.out.println(cartService.findAll());
         return cartService.findAll();
     }
 
@@ -38,8 +35,9 @@ public class CartController {
         return cartService.updateCart(cart);
     }
 
-    @RequestMapping("/deleteCart")
-    public String deleteCart(int cId){
+    @RequestMapping("/deleteCart/{cId}")
+    public String deleteCart(@PathVariable int cId){
+        System.out.println(cId);
         cartService.deleteById(cId);
         return "删除成功";
     }

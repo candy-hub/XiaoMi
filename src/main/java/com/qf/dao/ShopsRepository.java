@@ -11,4 +11,8 @@ public interface ShopsRepository extends JpaRepository<Shops,Integer> {
 
     List<Shops> findBySkId(Integer skId);
 
+    List<Shops> findByStatus(Integer status);
+
+
+
 }
