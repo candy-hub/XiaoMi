@@ -34,6 +34,11 @@ public class ShopsServiceImpl implements ShopsService {
     }
 
     @Override
+    public List<Shops> showlbt(Integer status) {
+       return shopsRepository.findByStatus(status);
+    }
+
+    @Override
     public Response findAllShops(int page, int size) {
         Pageable pages=PageRequest.of(page-1,size);
         Page<Shops> all=shopsRepository.findAll(pages);

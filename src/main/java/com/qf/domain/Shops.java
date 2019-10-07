@@ -49,4 +49,9 @@ public class Shops {
     @Column(name = "sk_id")
     private Integer skId;
 
+    @Column(name = "shop_lun")
+    private String shopLun;
+
+    private Integer status;
+
 }
