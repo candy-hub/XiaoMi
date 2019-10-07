@@ -3,7 +3,6 @@ package com.qf.controller;
 import com.alibaba.fastjson.JSON;
 import com.qf.domain.ShopKinds;
 import com.qf.domain.Shops;
-import com.qf.response.AddShops;
 import com.qf.response.Response;
 import com.qf.service.ShopKindsService;
 import com.qf.service.ShopsService;
@@ -80,17 +79,24 @@ public class ShopController {
         shopsService.deleteShops(shopId);
     }
 
-    @RequestMapping("/addShops")
-    public Shops addShops(@RequestBody AddShops addShops){
-        MultipartFile file=addShops.getFile();
-        Shops shops=addShops.getShops();
+    /*小图上传*/
+    @RequestMapping("/upload")
+    public String upload(MultipartFile file){
+
         logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
             logger.error("文件为空");
+            return "fail";
         }else {
             String path = uploadUtils.upload(file);
-            shops.setShopPic(path);
+//            System.out.println(path);
+            return path;
         }
+
+    }
+
+    @RequestMapping("/addShops")
+    public Shops addShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
@@ -100,16 +106,7 @@ public class ShopController {
     }
 
     @RequestMapping("/updateShops")
-    public Shops updateShops(@RequestBody AddShops addShops){
-        MultipartFile file=addShops.getFile();
-        Shops shops=addShops.getShops();
-        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
-        if (Objects.isNull(file) || file.isEmpty()) {
-            logger.error("文件为空");
-        }else {
-            String path = uploadUtils.upload(file);
-            shops.setShopPic(path);
-        }
+    public Shops updateShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
