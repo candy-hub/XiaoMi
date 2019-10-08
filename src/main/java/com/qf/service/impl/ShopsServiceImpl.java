@@ -2,12 +2,14 @@ package com.qf.service.impl;
 
 import com.qf.dao.ShopKindsRepository;
 import com.qf.dao.ShopsRepository;
+import com.qf.domain.ResponseShops;
 import com.qf.domain.Shops;
 import com.qf.response.Response;
 import com.qf.service.ShopsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -39,8 +41,13 @@ public class ShopsServiceImpl implements ShopsService {
     }
 
     @Override
-    public List<Shops> showRM(Integer status) {
-        return shopsRepository.findByStatus(status);
+    public ResponseShops showRM(Integer page, Integer size) {
+        Pageable pages= PageRequest.of(page-1,size);
+        Page<Shops> all = shopsRepository.findAllByOrderByShopNumberDesc(pages);
+        ResponseShops res=new ResponseShops();
+        res.setList(all.getContent());
+        res.setTotal(all.getTotalElements());
+        return res;
     }
 
     @Override
