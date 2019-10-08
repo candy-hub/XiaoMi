@@ -1,5 +1,6 @@
 package com.qf.service;
 
+import com.qf.domain.ResponseShops;
 import com.qf.domain.Shops;
 import com.qf.response.Response;
 
@@ -12,7 +13,7 @@ public interface ShopsService {
 
     List<Shops> showlbt(Integer status);
 
-    List<Shops> showRM(Integer status);
+    ResponseShops showRM(Integer page, Integer size);
 
     /*
     * 后台商品管理

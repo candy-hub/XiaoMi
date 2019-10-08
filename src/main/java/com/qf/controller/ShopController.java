@@ -1,6 +1,7 @@
 package com.qf.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.qf.domain.ResponseShops;
 import com.qf.domain.ShopKinds;
 import com.qf.domain.Shops;
 import com.qf.response.Response;
@@ -60,9 +61,9 @@ public class ShopController {
     }
 
     //热卖商品
-    @RequestMapping("/showRM")
-    public List<Shops> showRM(){
-        return shopsService.showRM(2);
+    @RequestMapping("/showRM/{page}/{size}")
+    public ResponseShops showRM(@PathVariable("page") Integer page, @PathVariable("size") Integer size){
+       return shopsService.showRM(page, size);
     }
 
 
