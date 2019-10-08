@@ -1,9 +1,10 @@
-/*
 package com.qf.shiro;
 
 import com.qf.dao.AdminRepository;
 import com.qf.dao.PermissionRepository;
+import com.qf.dao.UsersRepository;
 import com.qf.domain.Permission;
+import com.qf.domain.Users;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -22,25 +23,28 @@ import java.util.List;
 public class MyRealm extends AuthorizingRealm{
 
     @Resource
-    private AdminRepository sysUserRepository;
+    private AdminRepository adminRepository;
 
     @Resource
-    private PermissionRepository sysPermissionRepository;
+    private UsersRepository usersRepository;
 
-   */
-/* @Resource
-    private SysPermissionMapper sysPermissionMapper;*//*
+    @Resource
+    private PermissionRepository permissionRepository;
 
+    /*@Resource
+    private SysPermissionMapper sysPermissionMapper;
+*/
+
+
+    /*
+    * 负责授权的方法
     */
-/*
-     * 负责授权的方法
-     *//*
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
-       String loginName=(String) principal.getPrimaryPrincipal();
+       /*String loginName=(String) principal.getPrimaryPrincipal();
        //查找权限
-        List<Permission> sysPermissions=sysPermissionRepository.selectPermissionByLoginName(loginName);
+        List<Permission> sysPermissions=permissionRepository.selectPermissionByLoginName(loginName);
         Collection permissions=new HashSet<>(); //去重
 
         for (SysPermission s:sysPermissions){
@@ -50,20 +54,22 @@ public class MyRealm extends AuthorizingRealm{
 
         simpleAuthorizationInfo.addStringPermissions(permissions);
 
-        return simpleAuthorizationInfo;
+        return simpleAuthorizationInfo;*/
+       return null;
     }
-    */
-/*
-     *负责用户认证的方法
-     *//*
+
+
+     /*
+     * 负责用户认证的方法
+     */
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username=(String)token.getPrincipal();
-        SysUser sysUser=sysUserRepository.findByLoginName(username);
-        String salt=sysUser.getLoginName();  //把用户名作为加密密码的盐
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(username,sysUser.getPassword(),ByteSource.Util.bytes(salt),getName());
+        String uEmail=(String)token.getPrincipal();
+        Users users=usersRepository.findAllByUEmail(uEmail);
+        String salt=users.getUEmail();  //把用户名作为加密密码的盐
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(uEmail,users.getUPassword(),ByteSource.Util.bytes(salt),getName());
         return simpleAuthenticationInfo;
     }
+
 }
-*/

@@ -4,6 +4,7 @@ package com.qf.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -24,5 +25,6 @@ public class Code {
     @Column(name = "c_statue")
     private Integer cStatue;
 
-
+    @Column(name = "create_time")
+    private Date createTime;
 }

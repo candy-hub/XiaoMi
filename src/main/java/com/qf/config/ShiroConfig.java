@@ -1,4 +1,3 @@
-/*
 package com.qf.config;
 
 import com.qf.shiro.MyRealm;
@@ -10,6 +9,9 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Configuration
@@ -27,14 +29,13 @@ public class ShiroConfig {
         //无权限得情况下跳转得方法
 
 
-*/
-/*        Map filtes = new HashMap<>();
+        Map filtes = new HashMap<>();
 
         //设置权限
         filtes.put("/insert","perms[user_editsjh]");
         filtes.put("/delete","perms[user_editsss]");
         filtes.put("/update","perms[user_forbiddens]");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);*//*
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);
 
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
@@ -52,14 +53,14 @@ public class ShiroConfig {
         return defaultWebSecurityManager;
     }
 
-    */
-/**
+    /*
      * 密码校验规则HashedCredentialsMatcher
      * 这个类是为了对密码进行编码的 ,
      * 防止密码在数据库里明码保存 , 当然在登陆认证的时候 ,
      * 这个类也负责对form里输入的密码进行编码
      * 处理认证匹配处理器：如果自定义需要实现继承HashedCredentialsMatcher
-     *//*
+    */
+
 
     @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
@@ -102,4 +103,3 @@ public class ShiroConfig {
     }
 
 }
-*/
