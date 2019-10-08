@@ -36,6 +36,7 @@ public class CartServiceImpl implements CartService {
             c.setShopPic(shop.getShopPic());
             c.setShopPrice(shop.getShopPrice());
             c.setShopTotal(cart.getTotal());
+            c.setShopFactory(shop.getFactory());
             c.setUId(1); //待定
             return cartRepository.save(c);
         }

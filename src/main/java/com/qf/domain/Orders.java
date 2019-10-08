@@ -14,6 +14,9 @@ public class Orders {
     @Column(name = "o_id")
     private Integer oId;
 
+    @Column(name = "o_number")
+    private String oNumber;
+
     @Column(name = "u_id")
     private Integer uId;
 
@@ -26,16 +29,22 @@ public class Orders {
     @Column(name = "shop_price")
     private Float shopPrice;
 
+    @Column(name = "shop_pic")
+    private String shopPic;
+
+    @Column(name = "shop_count")
+    private Float shopCount;
+
+    @Column(name = "shop_factory")
+    private String shopFactory;
+
     @Column(name = "user_name")
     private String userName;
 
     @Column(name = "user_tell")
-    private Number userTell;
+    private String userTell;
 
     @Column(name = "user_address")
-    private String user_address;
-
-    @Column(name = "o_price")
-    private Float oPrice;
+    private String userAddress;
 
 }

@@ -31,4 +31,9 @@ public class Cart {
 
     @Column(name = "shop_total")
     private Float shopTotal;
+
+    @Column(name = "shop_factory")
+    private String shopFactory;
+
+
 }
