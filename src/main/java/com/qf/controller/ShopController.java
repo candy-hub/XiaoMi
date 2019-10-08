@@ -1,9 +1,9 @@
 package com.qf.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.qf.domain.ResponseShops;
 import com.qf.domain.ShopKinds;
 import com.qf.domain.Shops;
-import com.qf.response.AddShops;
 import com.qf.response.Response;
 import com.qf.service.ShopKindsService;
 import com.qf.service.ShopsService;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,10 +48,22 @@ public class ShopController {
         return shopKindsService.show1();
     }
 
+    //轮播图
+    @RequestMapping("/showlbt")
+    public List<Shops> showlbt(){
+        return shopsService.showlbt(1);
+    }
+
     //二级菜单
     @RequestMapping("/show2/{ids}")
     public List<Shops> show2(@PathVariable("ids") Integer skId){
           return shopsService.show2(skId);
+    }
+
+    //热卖商品
+    @RequestMapping("/showRM/{page}/{size}")
+    public ResponseShops showRM(@PathVariable("page") Integer page, @PathVariable("size") Integer size){
+       return shopsService.showRM(page, size);
     }
 
 
@@ -67,17 +80,24 @@ public class ShopController {
         shopsService.deleteShops(shopId);
     }
 
-    @RequestMapping("/addShops")
-    public Shops addShops(@RequestBody AddShops addShops){
-        MultipartFile file=addShops.getFile();
-        Shops shops=addShops.getShops();
+    /*小图上传*/
+    @RequestMapping("/upload")
+    public String upload(MultipartFile file){
+
         logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
             logger.error("文件为空");
+            return "fail";
         }else {
             String path = uploadUtils.upload(file);
-            shops.setShopPic(path);
+//            System.out.println(path);
+            return path;
         }
+
+    }
+
+    @RequestMapping("/addShops")
+    public Shops addShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
@@ -87,16 +107,7 @@ public class ShopController {
     }
 
     @RequestMapping("/updateShops")
-    public Shops updateShops(@RequestBody AddShops addShops){
-        MultipartFile file=addShops.getFile();
-        Shops shops=addShops.getShops();
-        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
-        if (Objects.isNull(file) || file.isEmpty()) {
-            logger.error("文件为空");
-        }else {
-            String path = uploadUtils.upload(file);
-            shops.setShopPic(path);
-        }
+    public Shops updateShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
