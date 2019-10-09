@@ -54,6 +54,12 @@ public class ShopController {
         return shopsService.showlbt(1);
     }
 
+    //手机专场
+    @RequestMapping("/showPhone")
+    public List<Shops> showPhone(){
+        return shopsService.showlbt(2);
+    }
+
     //二级菜单
     @RequestMapping("/show2/{ids}")
     public List<Shops> show2(@PathVariable("ids") Integer skId){
