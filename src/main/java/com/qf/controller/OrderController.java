@@ -34,4 +34,15 @@ public class OrderController {
         System.out.println(listCart);
         return ordersService.submitForm2(listCart);
     }
+
+    @RequestMapping("/findNotPayOrders")
+    public List<Orders> findNotPayOrders(){
+        return ordersService.findPayOrders(0);
+    }
+
+    @RequestMapping("/findAlreadyPayOrders")
+    public List<Orders>findAlreadyPayOrders(){
+        return ordersService.findPayOrders(1);
+    }
+
 }

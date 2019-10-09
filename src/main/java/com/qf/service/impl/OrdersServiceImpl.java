@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.CartRepository;
 import com.qf.dao.OrdersRepository;
 import com.qf.domain.Cart;
 import com.qf.domain.Orders;
@@ -19,11 +20,13 @@ public class OrdersServiceImpl implements OrdersService {
     private OrdersRepository ordersRepository;
 
     @Resource
+    CartRepository cartRepository;
+
+    @Resource
     private OrderUtils orderUtils;
 
     @Override
     public Orders submitForm1(Shops shops) {
-
         String orderNumber=orderUtils.getOrder();
         Orders orders=new Orders();
         orders.setONumber(orderNumber);
@@ -47,7 +50,6 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public List<Orders> submitForm2(List<Cart> listCart) {
-        //System.out.println(listCart);
         List<Orders> listOrders=new ArrayList<>();
         Orders orders=new Orders();
         for(Cart cart:listCart){
@@ -63,10 +65,15 @@ public class OrdersServiceImpl implements OrdersService {
             orders.setUserTell("13198468324");
             orders.setUserAddress("陕西省西安市小米市场部");
             listOrders.add(orders);
+            cartRepository.delete(cart);
         }
         System.out.println(listOrders);
         ordersRepository.saveAll(listOrders);
         return listOrders;
     }
 
+    @Override
+    public List<Orders> findPayOrders(Integer  Statue) {
+        return ordersRepository.findByOStatue(Statue);
+    }
 }
