@@ -29,13 +29,13 @@ public class ShiroConfig {
         //无权限得情况下跳转得方法
 
 
-        Map filtes = new HashMap<>();
+        /*Map filtes = new HashMap<>();
 
         //设置权限
         filtes.put("/insert","perms[user_editsjh]");
         filtes.put("/delete","perms[user_editsss]");
         filtes.put("/update","perms[user_forbiddens]");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);*/
 
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");

@@ -1,8 +1,10 @@
 package com.qf.shiro;
 
 import com.qf.dao.AdminRepository;
+import com.qf.dao.PermissionMapper;
 import com.qf.dao.PermissionRepository;
 import com.qf.dao.UsersRepository;
+import com.qf.domain.Admin;
 import com.qf.domain.Permission;
 import com.qf.domain.Users;
 import org.apache.shiro.authc.AuthenticationException;
@@ -29,11 +31,7 @@ public class MyRealm extends AuthorizingRealm{
     private UsersRepository usersRepository;
 
     @Resource
-    private PermissionRepository permissionRepository;
-
-    /*@Resource
-    private SysPermissionMapper sysPermissionMapper;
-*/
+    private PermissionMapper permissionMapper;
 
 
     /*
@@ -42,20 +40,20 @@ public class MyRealm extends AuthorizingRealm{
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
-       /*String loginName=(String) principal.getPrimaryPrincipal();
+       String aName=(String) principal.getPrimaryPrincipal();
        //查找权限
-        List<Permission> sysPermissions=permissionRepository.selectPermissionByLoginName(loginName);
-        Collection permissions=new HashSet<>(); //去重
+        List<Permission> permissions=permissionMapper.selectAllByAName(aName);
+        Collection per=new HashSet<>(); //去重
 
-        for (SysPermission s:sysPermissions){
-            permissions.add(s.getPerName());  //获得权限名
+        for (Permission s:permissions){
+            per.add(s.getPName());  //获得权限名
         }
+        System.out.println(per);
         SimpleAuthorizationInfo simpleAuthorizationInfo=new SimpleAuthorizationInfo();
 
-        simpleAuthorizationInfo.addStringPermissions(permissions);
+        simpleAuthorizationInfo.addStringPermissions(per);
 
-        return simpleAuthorizationInfo;*/
-       return null;
+        return simpleAuthorizationInfo;
     }
 
 
