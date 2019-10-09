@@ -25,8 +25,8 @@ public class AdminController {
        return adminService.login(admin);
     }*/
 
-    @RequestMapping("/userLogin")
-    public String login(@RequestBody Admin admin){
+    @RequestMapping("/adminLogin")
+    public String adminLogin(@RequestBody Admin admin){
         String uEmail= admin.getAName();
         String password=admin.getAPassword();
         Subject subject = SecurityUtils.getSubject();

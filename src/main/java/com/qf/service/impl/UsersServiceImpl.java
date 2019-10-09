@@ -26,16 +26,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users findByRegisterName(String uEmail) {
-        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail);
+    public Users findByRegisterName(String uEmail,String uName,String uTell) {
+        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell);
     }
 
     @Override
     public Users login(Users users) {
-        String aName= users.getUName();
+        String uName= users.getUName();
         String password=users.getUPassword();
-
-        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(aName);
+        String uTell=users.getUTell();
+        String uEmail=users.getUName();
+        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell);
         if (a.getUPassword().equals(password)){
             return a;
         }
