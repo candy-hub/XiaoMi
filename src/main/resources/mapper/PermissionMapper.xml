@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+namespace=""  mapper接口的路径对应
+-->
+<mapper namespace="com.qf.dao.PermissionMapper">
+
+    <resultMap id="MyResultMap" type="com.qf.domain.Permission">
+        <id property="pId" column="p_id"></id>
+        <result property="pName" column="p_name"></result>
+        <result property="pInfo" column="pInfo"></result>
+        <result property="rId" column="rId"></result>
+    </resultMap>
+
+    <select id="selectAllByAName" parameterType="java.lang.String" resultMap="MyResultMap">
+        select p.p_name from permission p, role r,admin a where p.r_id=r.r_id and r.a_id=a.a_id and a.a_name=#{aName}
+    </select>
+
+</mapper>

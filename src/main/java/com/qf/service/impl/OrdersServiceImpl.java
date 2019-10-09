@@ -1,7 +1,6 @@
 package com.qf.service.impl;
 
 import com.qf.dao.OrdersRepository;
-import com.qf.dao.ShopsRepository;
 import com.qf.domain.Cart;
 import com.qf.domain.Orders;
 import com.qf.domain.Shops;
