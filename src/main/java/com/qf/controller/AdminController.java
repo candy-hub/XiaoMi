@@ -19,13 +19,15 @@ public class AdminController {
     private AdminService adminService;
 
     /*
+    * 添加管理员用户时记得用aName作为盐进行加密
+    * */
+
+
+
+
+    /*
      * 登录
      */
-    /*@RequestMapping("/adminLogin")
-    public Admin login(@RequestBody Admin admin){
-       return adminService.login(admin);
-    }*/
-
     @RequestMapping("/adminLogin")
     public String adminLogin(@RequestBody Login login){
         String loginName= login.getLoginName();

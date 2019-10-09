@@ -38,11 +38,6 @@ public class UsersServiceImpl implements UsersService {
     public Users login(Login login) {
         String loginName= login.getLoginName();
         String password=login.getPassword();
-
-        /*String uName= users.getUName();
-        String password=users.getUPassword();
-        String uTell=users.getUTell();
-        String uEmail=users.getUName();*/
         Users a=usersRepository.findAllByUEmailOrUNameOrUTell(loginName,loginName,loginName);
         if (a.getUPassword().equals(password)){
             return a;
