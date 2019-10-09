@@ -14,7 +14,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "u_id")
-    private Integer aId;
+    private Integer uId;
 
     @Column(name = "u_name")
     private String uName;
@@ -48,6 +48,6 @@ public class Users {
     private  Integer uStatue;//用户状态
 
     @Column(name = "u_email")
-    private  Integer uEmail;
+    private  String uEmail;
 
 }

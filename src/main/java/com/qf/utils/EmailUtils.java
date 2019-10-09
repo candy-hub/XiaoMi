@@ -9,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Random;
 
 @Component
@@ -24,24 +25,35 @@ public class EmailUtils {
     private CodeRepository codeRepository;
 
     public String sendEmail(String sendTo){
-        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setSubject("注册验证码");
-        String code=randomCode();
+        String code = randomCode();
         simpleMailMessage.setText(code);
         simpleMailMessage.setFrom(sendFrom);
         simpleMailMessage.setTo(sendTo);
         try{
             javamailSender.send(simpleMailMessage);
-            Code co=new Code();
-            co.setUEmail(sendTo);
-            co.setCCode(code);
-            co.setCStatue(1); //设置当前验证码的状态
-            codeRepository.save(co);
+            if (codeRepository.findByUEmail(sendTo)!=null){
+                Code co =codeRepository.findByUEmail(sendTo);
+                co.setCCode(code);
+                co.setCStatue(1);
+                co.setCreateTime(new Date());
+                codeRepository.save(co);
+            }else {
+                Code co = new Code();
+                co.setCreateTime(new Date());
+                co.setCCode(code);
+                co.setUEmail(sendTo);
+                //设置当前验证码得状态
+                co.setCStatue(1);
+                codeRepository.save(co);
+            }
             return code;
+
         }catch (Exception e){
             e.printStackTrace();
-            return "";
         }
+        return "";
     }
 
     public static String randomCode(){
