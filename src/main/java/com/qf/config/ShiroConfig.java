@@ -1,6 +1,7 @@
 package com.qf.config;
 
 import com.qf.shiro.AdminRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -58,7 +59,7 @@ public class ShiroConfig {
     */
 
 
-    /*@Bean("hashedCredentialsMatcher")
+    @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         //指定加密方式为MD5
@@ -67,13 +68,14 @@ public class ShiroConfig {
         credentialsMatcher.setHashIterations(1024);
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;
-    }*/
+    }
 
 
     @Bean("adminRealm")
-    public AdminRealm adminRealm(){
+    public AdminRealm adminRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
         AdminRealm adminRealm = new AdminRealm();
         adminRealm.setAuthorizationCachingEnabled(false);
+        adminRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         return adminRealm;
     }
 
