@@ -47,4 +47,7 @@ public class Orders {
     @Column(name = "user_address")
     private String userAddress;
 
+    @Column(name = "o_statue")
+    private Integer oStatue;
+
 }
