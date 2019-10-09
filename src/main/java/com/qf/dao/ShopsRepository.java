@@ -18,4 +18,6 @@ public interface ShopsRepository extends JpaRepository<Shops,Integer> {
 
     Page<Shops> findAllByOrderByShopNumberDesc(Pageable pages);
 
+    List<Shops> findByShopNameLike(String name);
+
 }
