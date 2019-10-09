@@ -34,6 +34,7 @@ public class EmailUtils {
         try{
             javamailSender.send(simpleMailMessage);
             if (codeRepository.findByUEmail(sendTo)!=null){
+                //一个邮箱只能有一个验证码，如果已有验证码，则重新存储
                 Code co =codeRepository.findByUEmail(sendTo);
                 co.setCCode(code);
                 co.setCStatue(1);
@@ -44,7 +45,7 @@ public class EmailUtils {
                 co.setCreateTime(new Date());
                 co.setCCode(code);
                 co.setUEmail(sendTo);
-                //设置当前验证码得状态
+                //设置当前验证码的状态
                 co.setCStatue(1);
                 codeRepository.save(co);
             }
