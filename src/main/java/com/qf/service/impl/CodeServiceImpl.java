@@ -22,10 +22,11 @@ public class CodeServiceImpl implements CodeService {
         Code co = codeRepository.findByUEmail(useremail);
         Date createTime = co.getCreateTime();
         Date nowTime = new Date();
-        System.out.println(nowTime);
-        int i = nowTime.compareTo(createTime);
-        System.out.println(i);
-        if (i >= 600) {
+//        System.out.println(nowTime);
+//        System.out.println(createTime);
+        long i = nowTime.getTime()-createTime.getTime();  //比较毫秒值
+//        System.out.println(i);
+        if (i >= 6000) {
             //失效
             co.setCStatue(0);
             codeRepository.save(co);
