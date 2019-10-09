@@ -1,6 +1,7 @@
 package com.qf.service;
 
 import com.qf.domain.Users;
+import com.qf.response.Login;
 
 public interface UsersService {
 
@@ -8,7 +9,7 @@ public interface UsersService {
 
     Users findById(int id);
 
-    Users findByRegisterName(String uEmail,String uName,String uTell);
+    Users findByRegisterName(Users users);
 
-    Users login(Users users);
+    Users login(Login login);
 }

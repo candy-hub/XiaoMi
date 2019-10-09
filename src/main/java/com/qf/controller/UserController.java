@@ -1,21 +1,17 @@
 package com.qf.controller;
 
 import com.qf.domain.Users;
+import com.qf.response.Login;
 import com.qf.response.UserCode;
 import com.qf.service.CodeService;
 import com.qf.service.UsersService;
 import com.qf.utils.EmailUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @RestController
 public class UserController {
@@ -43,10 +39,8 @@ public class UserController {
         String msg="";
         Users users=userCode.getUsers();
         String code=userCode.getCode();
-        String email=users.getUEmail();
-        String uTell=users.getUTell();
-        String uName=users.getUName();
-        if (usersService.findByRegisterName(email,uTell,uName)!=null){
+
+        if (usersService.findByRegisterName(users)!=null){
             msg="用户名已存在";
             return msg;
         }
@@ -70,8 +64,9 @@ public class UserController {
      * 登录
      */
     @RequestMapping("/userLogin")
-    public Users userLogin(@RequestBody Users users){
-        return usersService.login(users);
+    public Users userLogin(@RequestBody Login login){
+//        System.out.println(login);
+        return usersService.login(login);
     }
 
 }

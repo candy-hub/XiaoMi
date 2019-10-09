@@ -12,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -56,10 +57,11 @@ public class AdminRealm extends AuthorizingRealm{
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String uEmail=(String)token.getPrincipal();
-        Admin admin =adminRepository.findByANameOrAEmailOrATell(uEmail,"","");
-       /* String salt=admin.getAName();  //把用户名作为加密密码的盐*/
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(uEmail,admin.getAPassword(),getName());
+        String loginName=(String)token.getPrincipal();
+        Admin admin =adminRepository.findByANameOrAEmailOrATell(loginName,loginName,loginName);
+        System.out.println(admin);
+        String salt=admin.getAName();  //把用户名作为加密密码的盐
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(loginName,admin.getAPassword(),ByteSource.Util.bytes(salt),getName());
         return simpleAuthenticationInfo;
     }
 
