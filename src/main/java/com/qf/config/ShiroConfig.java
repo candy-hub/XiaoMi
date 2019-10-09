@@ -1,7 +1,6 @@
 package com.qf.config;
 
-import com.qf.shiro.MyRealm;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import com.qf.shiro.AdminRealm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -9,9 +8,6 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Configuration
@@ -45,10 +41,10 @@ public class ShiroConfig {
 
 
     @Bean("defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myRealm")MyRealm myRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("adminRealm")AdminRealm adminRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
 
-        defaultWebSecurityManager.setRealm(myRealm);
+        defaultWebSecurityManager.setRealm(adminRealm);
 
         return defaultWebSecurityManager;
     }
@@ -62,7 +58,7 @@ public class ShiroConfig {
     */
 
 
-    @Bean("hashedCredentialsMatcher")
+    /*@Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         //指定加密方式为MD5
@@ -71,15 +67,14 @@ public class ShiroConfig {
         credentialsMatcher.setHashIterations(1024);
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;
-    }
+    }*/
 
 
-    @Bean("myRealm")
-    public MyRealm myRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
-        MyRealm myRealm = new MyRealm();
-        myRealm.setAuthorizationCachingEnabled(false);
-        myRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-        return myRealm;
+    @Bean("adminRealm")
+    public AdminRealm adminRealm(){
+        AdminRealm adminRealm = new AdminRealm();
+        adminRealm.setAuthorizationCachingEnabled(false);
+        return adminRealm;
     }
 
 //    *

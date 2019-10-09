@@ -7,6 +7,7 @@ import com.qf.service.UsersService;
 import com.qf.utils.EmailUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,9 @@ public class UserController {
         Users users=userCode.getUsers();
         String code=userCode.getCode();
         String email=users.getUEmail();
-        if (usersService.findByLoginName(email)!=null){
+        String uTell=users.getUTell();
+        String uName=users.getUName();
+        if (usersService.findByRegisterName(email)!=null || usersService.findByRegisterName(uTell)!=null || usersService.findByRegisterName(uName)!=null ){
             msg="用户名已存在";
             return msg;
         }
@@ -67,35 +70,8 @@ public class UserController {
      * 登录
      */
     @RequestMapping("/userLogin")
-    public String login(@RequestBody Users users){
-        String uEmail= users.getUEmail();
-        String password=users.getUPassword();
-        org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(uEmail, password);
-        try{
-            subject.login(token);
-            if (subject.isAuthenticated()){
-
-               /* List<SysPermission> list=sysPermissionMapper.selectPermissionByLoginName(loginName);
-
-                List<Integer> a=new ArrayList<>();
-                int b=0;
-                for (int i=0;i<list.size();i++){
-                    b= list.get(i).getPermissionId();
-                    if (b==2){
-                        return "for";
-                    }
-                    a.add(b);
-                }*/
-
-                return "success";
-            }else {
-                return "fail";
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "null";
+    public Users login(@RequestBody Users users){
+        return usersService.login(users);
     }
 
 }

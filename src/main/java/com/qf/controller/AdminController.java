@@ -4,6 +4,7 @@ import com.qf.domain.Admin;
 import com.qf.service.AdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +20,16 @@ public class AdminController {
     /*
      * 登录
      */
+    /*@RequestMapping("/adminLogin")
+    public Admin login(@RequestBody Admin admin){
+       return adminService.login(admin);
+    }*/
+
     @RequestMapping("/userLogin")
     public String login(@RequestBody Admin admin){
         String uEmail= admin.getAName();
         String password=admin.getAPassword();
-        org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
+        Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(uEmail, password);
         try{
             subject.login(token);

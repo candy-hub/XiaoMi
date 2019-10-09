@@ -2,11 +2,8 @@ package com.qf.shiro;
 
 import com.qf.dao.AdminRepository;
 import com.qf.dao.PermissionMapper;
-import com.qf.dao.PermissionRepository;
-import com.qf.dao.UsersRepository;
 import com.qf.domain.Admin;
 import com.qf.domain.Permission;
-import com.qf.domain.Users;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,20 +12,16 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-public class MyRealm extends AuthorizingRealm{
+public class AdminRealm extends AuthorizingRealm{
 
     @Resource
     private AdminRepository adminRepository;
-
-    @Resource
-    private UsersRepository usersRepository;
 
     @Resource
     private PermissionMapper permissionMapper;
@@ -64,9 +57,9 @@ public class MyRealm extends AuthorizingRealm{
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String uEmail=(String)token.getPrincipal();
-        Users users=usersRepository.findAllByUEmail(uEmail);
-        String salt=users.getUEmail();  //把用户名作为加密密码的盐
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(uEmail,users.getUPassword(),ByteSource.Util.bytes(salt),getName());
+        Admin admin =adminRepository.findByANameOrAEmailOrATell(uEmail);
+       /* String salt=admin.getAName();  //把用户名作为加密密码的盐*/
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(uEmail,admin.getAPassword(),getName());
         return simpleAuthenticationInfo;
     }
 

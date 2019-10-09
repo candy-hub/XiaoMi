@@ -24,7 +24,7 @@ public class Admin {
     private String aPassword;
 
     @Column(name = "a_tell")
-    private Number aTell;
+    private String aTell;
 
     @Column(name = "create_time")
 //    入参格式

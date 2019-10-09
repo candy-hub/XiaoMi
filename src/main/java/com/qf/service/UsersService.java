@@ -8,5 +8,7 @@ public interface UsersService {
 
     Users findById(int id);
 
-    Users findByLoginName(String uName);
+    Users findByRegisterName(String uName);
+
+    Users login(Users users);
 }

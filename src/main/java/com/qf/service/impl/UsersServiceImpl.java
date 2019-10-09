@@ -17,11 +17,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users save(Users users) {
-        String password= users.getUPassword();
-        String uEmail=users.getUEmail();
-        Md5Utils md5Utils=new Md5Utils();
-        String password1 = md5Utils.getPassword(uEmail,password);
-        users.setUPassword(password1);
         return usersRepository.save(users);
     }
 
@@ -31,7 +26,19 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users findByLoginName(String uEmail) {
-        return usersRepository.findAllByUEmail(uEmail);
+    public Users findByRegisterName(String uEmail) {
+        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail);
+    }
+
+    @Override
+    public Users login(Users users) {
+        String aName= users.getUName();
+        String password=users.getUPassword();
+
+        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(aName);
+        if (a.getUPassword().equals(password)){
+            return a;
+        }
+        return null;
     }
 }
