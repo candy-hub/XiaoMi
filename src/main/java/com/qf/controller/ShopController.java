@@ -73,6 +73,11 @@ public class ShopController {
        return shopsService.showRM(page, size);
     }
 
+    //模糊查询商品展示
+    @RequestMapping("/vague/{name}")
+    public List<Shops> vague(@PathVariable("name") String name){
+      return shopsService.vague(name);
+    }
 
     /*
      * 后台商品管理

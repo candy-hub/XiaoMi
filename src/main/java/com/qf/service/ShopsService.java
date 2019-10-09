@@ -15,6 +15,8 @@ public interface ShopsService {
 
     ResponseShops showRM(Integer page, Integer size);
 
+    List<Shops> vague(String name);
+
     /*
     * 后台商品管理
     */

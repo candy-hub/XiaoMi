@@ -51,6 +51,11 @@ public class ShopsServiceImpl implements ShopsService {
     }
 
     @Override
+    public List<Shops> vague(String name) {
+        return shopsRepository.findByShopNameLike("%"+name+"%");
+    }
+
+    @Override
     public Response findAllShops(int page, int size) {
         Pageable pages=PageRequest.of(page-1,size);
         Page<Shops> all=shopsRepository.findAll(pages);
