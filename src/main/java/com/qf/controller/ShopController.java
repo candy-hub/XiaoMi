@@ -89,10 +89,8 @@ public class ShopController {
 
     @RequestMapping("/findByValues/{page}/{size}")
     public Response findByValues(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ShopFuzzyQuery shopFuzzyQuery){
-        String name=shopFuzzyQuery.getName();
-        String value=shopFuzzyQuery.getValue();
-        System.out.println(name+"=="+value);
-        return null;
+
+        return shopsService.ShopFuzzyQuery(page,size,shopFuzzyQuery);
     }
 
     @RequestMapping("/deleteShops/{shopId}")

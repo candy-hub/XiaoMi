@@ -9,5 +9,4 @@ import java.util.List;
 public class Response<T> {
     private List<T> list;
     private Long total;
-    private List<ShopKinds> shopKindsList;
 }
