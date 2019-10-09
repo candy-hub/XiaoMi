@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepository extends JpaRepository<Users,Integer> {
 
-    Users findAllByUEmailOrUNameOrUTell(String uEmail);
+    Users findAllByUEmailOrUNameOrUTell(String uEmail,String uName,String uTell);
 
 }

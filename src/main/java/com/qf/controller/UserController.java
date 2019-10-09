@@ -46,7 +46,7 @@ public class UserController {
         String email=users.getUEmail();
         String uTell=users.getUTell();
         String uName=users.getUName();
-        if (usersService.findByRegisterName(email)!=null || usersService.findByRegisterName(uTell)!=null || usersService.findByRegisterName(uName)!=null ){
+        if (usersService.findByRegisterName(email,uTell,uName)!=null){
             msg="用户名已存在";
             return msg;
         }
@@ -70,7 +70,7 @@ public class UserController {
      * 登录
      */
     @RequestMapping("/userLogin")
-    public Users login(@RequestBody Users users){
+    public Users userLogin(@RequestBody Users users){
         return usersService.login(users);
     }
 
