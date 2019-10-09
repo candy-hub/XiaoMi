@@ -5,6 +5,7 @@ import com.qf.domain.ResponseShops;
 import com.qf.domain.ShopKinds;
 import com.qf.domain.Shops;
 import com.qf.response.Response;
+import com.qf.response.ShopFuzzyQuery;
 import com.qf.service.ShopKindsService;
 import com.qf.service.ShopsService;
 import com.qf.utils.UploadUtils;
@@ -72,6 +73,11 @@ public class ShopController {
        return shopsService.showRM(page, size);
     }
 
+    //模糊查询商品展示
+    @RequestMapping("/vague/{name}")
+    public List<Shops> vague(@PathVariable("name") String name){
+      return shopsService.vague(name);
+    }
 
     /*
      * 后台商品管理
@@ -79,6 +85,12 @@ public class ShopController {
     @RequestMapping("/findAllShops/{page}/{size}")
     public Response findAllShops(@PathVariable("page") int page, @PathVariable("size") int size){
         return shopsService.findAllShops(page,size);
+    }
+
+    @RequestMapping("/findByValues/{page}/{size}")
+    public Response findByValues(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ShopFuzzyQuery shopFuzzyQuery){
+
+        return shopsService.ShopFuzzyQuery(page,size,shopFuzzyQuery);
     }
 
     @RequestMapping("/deleteShops/{shopId}")

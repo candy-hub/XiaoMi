@@ -3,6 +3,7 @@ package com.qf.service;
 import com.qf.domain.ResponseShops;
 import com.qf.domain.Shops;
 import com.qf.response.Response;
+import com.qf.response.ShopFuzzyQuery;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface ShopsService {
     List<Shops> showlbt(Integer status);
 
     ResponseShops showRM(Integer page, Integer size);
+
+    List<Shops> vague(String name);
 
     /*
     * 后台商品管理
@@ -27,5 +30,7 @@ public interface ShopsService {
     Shops findShopsById(int shopId);
 
     Shops updateShops(Shops Shops);
+
+    Response ShopFuzzyQuery(int page, int size,ShopFuzzyQuery shopFuzzyQuery); //模糊查询
 
 }
