@@ -1,6 +1,7 @@
 package com.qf.controller;
 
 import com.qf.domain.Admin;
+import com.qf.response.Login;
 import com.qf.service.AdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -26,11 +27,11 @@ public class AdminController {
     }*/
 
     @RequestMapping("/adminLogin")
-    public String adminLogin(@RequestBody Admin admin){
-        String uEmail= admin.getAName();
-        String password=admin.getAPassword();
+    public String adminLogin(@RequestBody Login login){
+        String loginName= login.getLoginName();
+        String password=login.getPassword();
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(uEmail, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
         try{
             subject.login(token);
             if (subject.isAuthenticated()){

@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.UsersRepository;
 import com.qf.domain.Users;
+import com.qf.response.Login;
 import com.qf.service.UsersService;
 import com.qf.utils.Md5Utils;
 import org.springframework.stereotype.Service;
@@ -26,17 +27,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users findByRegisterName(String uEmail,String uName,String uTell) {
+    public Users findByRegisterName(Users users) {
+        String uEmail=users.getUEmail();
+        String uTell=users.getUTell();
+        String uName=users.getUName();
         return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell);
     }
 
     @Override
-    public Users login(Users users) {
-        String uName= users.getUName();
+    public Users login(Login login) {
+        String loginName= login.getLoginName();
+        String password=login.getPassword();
+
+        /*String uName= users.getUName();
         String password=users.getUPassword();
         String uTell=users.getUTell();
-        String uEmail=users.getUName();
-        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell);
+        String uEmail=users.getUName();*/
+        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(loginName,loginName,loginName);
         if (a.getUPassword().equals(password)){
             return a;
         }

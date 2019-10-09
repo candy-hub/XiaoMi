@@ -57,7 +57,7 @@ public class AdminRealm extends AuthorizingRealm{
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String uEmail=(String)token.getPrincipal();
-        Admin admin =adminRepository.findByANameOrAEmailOrATell(uEmail,"","");
+        Admin admin =adminRepository.findByANameOrAEmailOrATell(uEmail,uEmail,uEmail);
        /* String salt=admin.getAName();  //把用户名作为加密密码的盐*/
         SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(uEmail,admin.getAPassword(),getName());
         return simpleAuthenticationInfo;
