@@ -6,17 +6,21 @@ import com.qf.service.AdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class AdminController {
 
     @Resource
     private AdminService adminService;
+
+
 
     /*
     * 添加管理员用户时记得用aName作为盐进行加密
@@ -59,4 +63,34 @@ public class AdminController {
         }
         return "null";
     }
+
+    //查看管理员
+    @RequestMapping("/findAll")
+    public List<Admin> findAll(){
+     return adminService.findAll();
+    }
+
+    //新增管理员
+    @RequestMapping("/insert")
+    public String insert(@RequestBody Admin admin){
+        //System.out.println(admin);
+        return adminService.insert(admin);
+    }
+
+    //修改管理员
+    @RequestMapping("/selectById/{ids}")
+    public Admin selectById(@PathVariable ("ids") Integer id){
+       return adminService.selectById(id);
+    }
+    @RequestMapping("/update")
+    public String update(@RequestBody Admin admin){
+        return adminService.update(admin);
+    }
+
+    //删除管理员
+     @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable ("id") Integer id){
+        return adminService.delete(id);
+     }
+
 }
