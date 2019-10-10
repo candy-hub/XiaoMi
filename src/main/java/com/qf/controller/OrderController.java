@@ -19,21 +19,20 @@ public class OrderController {
     @Resource
     public OrdersService ordersService;
 
-    @RequestMapping("/userOrder1")
-    public Orders submitForm1(@RequestBody Shops shops){
-        Orders orders=ordersService.submitForm1(shops);
+    @RequestMapping("/userOrder1/{uid}")
+    public Orders submitForm1(@RequestBody Shops shops, @PathVariable int uid){
+        Orders orders=ordersService.submitForm1(shops,uid);
         return orders;
     }
 
-    @RequestMapping("/findAllOrder")
-    public List<Orders> findAllOrder(){
-        return ordersService.findAllOrders();
+    @RequestMapping("/findAllOrder/{uid}")
+    public List<Orders> findAllOrder(@PathVariable int uid){
+        return ordersService.findAllOrders(uid);
     }
 
-    @RequestMapping("/userOrder2")
-    public List<Orders> submitForm2(@RequestBody List<Cart> listCart){
-        System.out.println(listCart);
-        return ordersService.submitForm2(listCart);
+    @RequestMapping("/userOrder2/{uid}")
+    public List<Orders> submitForm2(@RequestBody List<Cart> listCart, @PathVariable int uid){
+        return ordersService.submitForm2(listCart,uid);
     }
 
     @RequestMapping("/findNotPayOrders")

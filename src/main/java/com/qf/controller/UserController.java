@@ -6,6 +6,7 @@ import com.qf.response.UserCode;
 import com.qf.service.CodeService;
 import com.qf.service.UsersService;
 import com.qf.utils.EmailUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,7 +67,16 @@ public class UserController {
     @RequestMapping("/userLogin")
     public Users userLogin(@RequestBody Login login){
 //        System.out.println(login);
-        return usersService.login(login);
+        Users users=usersService.login(login);
+//        session.setAttribute("user",users);
+        return users;
+    }
+
+    @RequestMapping("/findUserByUid/{uId}")
+    public Users findById(@PathVariable int uId){
+//        Object user = session.getAttribute("user");
+//        System.out.println(user);
+        return usersService.findById(uId);
     }
 
 }
