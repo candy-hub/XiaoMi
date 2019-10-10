@@ -10,6 +10,7 @@ import com.qf.utils.OrderUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class OrdersServiceImpl implements OrdersService {
         orders.setShopNumber(shops.getShopNumber());
         orders.setShopPrice(shops.getShopPrice());
         orders.setShopFactory(shops.getFactory());
-        orders.setShopCount(12343.34f);
+        BigDecimal bigDecimal=new BigDecimal(12343.34);
+        orders.setShopCount(bigDecimal);
         orders.setUserName("景娴");
         orders.setUserTell("13198468324");
         orders.setUserAddress("陕西省西安市小米市场部");
@@ -60,7 +62,8 @@ public class OrdersServiceImpl implements OrdersService {
             orders.setShopNumber(cart.getShopCount());
             orders.setShopPrice(cart.getShopPrice());
             orders.setShopFactory(cart.getShopFactory());
-            orders.setShopCount(12343.34f);
+            BigDecimal bigDecimal=new BigDecimal(12343.34);
+            orders.setShopCount(bigDecimal);
             orders.setUserName("景娴");
             orders.setUserTell("13198468324");
             orders.setUserAddress("陕西省西安市小米市场部");

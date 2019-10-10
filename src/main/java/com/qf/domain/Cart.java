@@ -4,6 +4,7 @@ package com.qf.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -21,7 +22,7 @@ public class Cart {
     private String shopName;
 
     @Column(name = "shop_price")
-    private Float shopPrice;
+    private BigDecimal shopPrice;
 
     @Column(name = "shop_pic")
     private String shopPic;
@@ -30,7 +31,7 @@ public class Cart {
     private Integer shopCount;
 
     @Column(name = "shop_total")
-    private Float shopTotal;
+    private BigDecimal shopTotal;
 
     @Column(name = "shop_factory")
     private String shopFactory;

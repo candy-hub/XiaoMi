@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
         Cart c2=cartRepository.findByShopName(shop.getShopName());
         if (c2!=null){
             c2.setShopCount(cart.getNum() + c2.getShopCount());
-            c2.setShopTotal(cart.getTotal() + c2.getShopTotal());
+            c2.setShopTotal((cart.getTotal()).add(c2.getShopTotal()));
             return cartRepository.save(c2);
         }else {
             c.setShopCount(cart.getNum());
