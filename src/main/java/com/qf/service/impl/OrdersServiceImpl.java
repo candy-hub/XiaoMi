@@ -79,4 +79,9 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Orders> findPayOrders(Integer  Statue) {
         return ordersRepository.findByOStatue(Statue);
     }
+
+    @Override
+    public void deleteById(int oId) {
+        ordersRepository.deleteById(oId);
+    }
 }

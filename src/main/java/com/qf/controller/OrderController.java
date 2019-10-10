@@ -5,6 +5,7 @@ import com.qf.domain.Cart;
 import com.qf.domain.Orders;
 import com.qf.domain.Shops;
 import com.qf.service.OrdersService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,4 +46,9 @@ public class OrderController {
         return ordersService.findPayOrders(1);
     }
 
+    @RequestMapping("/deleteOrders/{oId}")
+    public String deleteOrders(@PathVariable int oId){
+        ordersService.deleteById(oId);
+        return "删除成功";
+    }
 }

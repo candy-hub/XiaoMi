@@ -16,4 +16,6 @@ public interface OrdersService {
 
     List<Orders> findPayOrders(Integer  Statue);
 
+    void deleteById(int oId);
+
 }
