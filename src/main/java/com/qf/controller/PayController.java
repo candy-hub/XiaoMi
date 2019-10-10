@@ -15,7 +15,7 @@ public class PayController {
     private AlipayUtils alipayUtils;
 
     @RequestMapping("/pay")
-    public String pay(Orders orders){
+    public String pay(@RequestBody Orders orders){
         String pay="";
         try {
             pay = alipayUtils.pay(orders);

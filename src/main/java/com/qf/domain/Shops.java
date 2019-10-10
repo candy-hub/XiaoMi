@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -27,7 +28,7 @@ public class Shops {
     private String shopBigPic;
 
     @Column(name = "shop_price")
-    private float shopPrice;
+    private BigDecimal shopPrice;
 
     @Column(name = "shop_number")
     private Integer shopNumber;//商品库存
