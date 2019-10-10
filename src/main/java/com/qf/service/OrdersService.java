@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface OrdersService {
 
-    Orders submitForm1(Shops shops);
+    Orders submitForm1(Shops shops,int uid);
 
-    List<Orders> findAllOrders();
+    List<Orders> findAllOrders(int uid);
 
-    List<Orders> submitForm2(List<Cart> listCart);
+    List<Orders> submitForm2(List<Cart> listCart,int uid);
 
     List<Orders> findPayOrders(Integer  Statue);
 
