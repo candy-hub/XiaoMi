@@ -79,4 +79,11 @@ public class UserController {
         return usersService.findById(uId);
     }
 
+    @RequestMapping("/updateUser")
+    public String updateUser(@RequestBody Users users){
+
+        return usersService.updateUser(users);
+
+    }
+
 }

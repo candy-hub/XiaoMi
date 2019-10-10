@@ -22,10 +22,10 @@ public class CartController {
     }
 
     /*从详情页加入购物车*/
-    @RequestMapping("/addCart")
-    public Cart addCart(@RequestBody AddCart cart){
+    @RequestMapping("/addCart/{uid}")
+    public Cart addCart(@RequestBody AddCart cart,@PathVariable int uid){
 
-        return cartService.addCart(cart);
+        return cartService.addCart(cart,uid);
     }
 
     /*修改购物车数量*/

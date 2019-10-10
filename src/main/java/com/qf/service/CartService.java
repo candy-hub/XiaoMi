@@ -9,7 +9,7 @@ public interface CartService {
 
     List<Cart> findAll(int uId);
 
-    Cart addCart(AddCart cart);
+    Cart addCart(AddCart cart,int uid);
 
     Cart updateCart(Cart cart);
 

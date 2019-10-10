@@ -12,4 +12,6 @@ public interface UsersService {
     Users findByRegisterName(Users users);
 
     Users login(Login login);
+
+    String updateUser(Users users);
 }

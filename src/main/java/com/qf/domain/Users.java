@@ -36,7 +36,7 @@ public class Users {
     private String uPic;
 
     @Column(name = "u_sex")
-    private boolean uSex;
+    private boolean uSex;  //1:男  0:女
 
     @Column(name = "u_birthday")
     private Date uBirthday;
