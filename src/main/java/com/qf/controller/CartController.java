@@ -6,6 +6,7 @@ import com.qf.service.CartService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -14,10 +15,9 @@ public class CartController {
     @Resource
     private CartService cartService;
 
-
     @RequestMapping("/findAllCart")
-    public List<Cart> findAll(){
-        //System.out.println(cartService.findAll());
+    public List<Cart> findAll(HttpSession session){
+
         return cartService.findAll();
     }
 
