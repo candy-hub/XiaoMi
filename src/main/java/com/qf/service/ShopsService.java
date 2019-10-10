@@ -33,4 +33,6 @@ public interface ShopsService {
 
     Response ShopFuzzyQuery(int page, int size,ShopFuzzyQuery shopFuzzyQuery); //模糊查询
 
+    Response orderShops(int page,int size,String name); //按条件排序
+
 }
