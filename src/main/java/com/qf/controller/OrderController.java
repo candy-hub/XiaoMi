@@ -45,4 +45,9 @@ public class OrderController {
         return ordersService.findPayOrders(1);
     }
 
+    @RequestMapping("/deleteOrders/{oId}")
+    public String deleteOrders(@PathVariable int oId){
+        ordersService.deleteById(oId);
+        return "删除成功";
+    }
 }
