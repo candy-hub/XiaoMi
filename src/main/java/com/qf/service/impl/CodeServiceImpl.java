@@ -26,7 +26,7 @@ public class CodeServiceImpl implements CodeService {
 //        System.out.println(createTime);
         long i = nowTime.getTime()-createTime.getTime();  //比较毫秒值
 //        System.out.println(i);
-        if (i >= 6000) {
+        if (i >= 60000) {
             //失效
             co.setCStatue(0);
             codeRepository.save(co);
