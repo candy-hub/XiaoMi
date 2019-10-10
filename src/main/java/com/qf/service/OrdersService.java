@@ -14,4 +14,6 @@ public interface OrdersService {
 
     List<Orders> submitForm2(List<Cart> listCart);
 
+    List<Orders> findPayOrders(Integer  Statue);
+
 }
