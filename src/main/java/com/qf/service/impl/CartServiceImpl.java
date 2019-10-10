@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart addCart(AddCart cart) {
+    public Cart addCart(AddCart cart,int uid) {
         Shops shop=cart.getShop();
         Cart c=new Cart();
         Cart c2=cartRepository.findByShopName(shop.getShopName());
@@ -37,7 +37,7 @@ public class CartServiceImpl implements CartService {
             c.setShopPrice(shop.getShopPrice());
             c.setShopTotal(cart.getTotal());
             c.setShopFactory(shop.getFactory());
-            c.setUId(1); //待定
+            c.setUId(uid); //待定
             return cartRepository.save(c);
         }
     }

@@ -8,6 +8,7 @@ import com.qf.utils.Md5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -38,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
         String uEmail=users.getUEmail();
         String uTell=users.getUTell();
         String uName=users.getUName();
-        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell);
+        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell).get(0);
     }
 
     @Override
@@ -46,13 +47,30 @@ public class UsersServiceImpl implements UsersService {
         String loginName= login.getLoginName();
         String password=login.getPassword();
         //登录时进行MD5加密
-        Users a=usersRepository.findAllByUEmailOrUNameOrUTell(loginName,loginName,loginName);
+        List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(loginName, loginName, loginName);
 
-        String pass=md5Utils.getPassword(a.getUName(),password);
+        String pass=md5Utils.getPassword(all.get(0).getUName(),password);
 
-        if (a.getUPassword().equals(pass)){
-            return a;
+        if (all.get(0).getUPassword().equals(pass)){
+            return all.get(0);
         }
         return null;
+    }
+    /*
+    *先查id
+    */
+    @Override
+    public String updateUser(Users users) {
+        String uEmail=users.getUEmail();
+        String uTell=users.getUTell();
+        String uName=users.getUName();
+        List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(uEmail, uName, uTell);
+        if (all.size()==1){
+            usersRepository.save(users);
+            return "success";
+        }else {
+            return "fail";
+        }
+
     }
 }

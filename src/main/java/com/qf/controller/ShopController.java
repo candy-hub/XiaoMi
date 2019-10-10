@@ -93,6 +93,12 @@ public class ShopController {
         return shopsService.ShopFuzzyQuery(page,size,shopFuzzyQuery);
     }
 
+    @RequestMapping("/orderShops/{page}/{size}/{name}")
+    public Response orderShops(@PathVariable("page") int page, @PathVariable("size") int size,@PathVariable("name") String name){
+        System.out.println(name);
+        return shopsService.orderShops(page,size,name);
+    }
+
     @RequestMapping("/deleteShops/{shopId}")
     public void deleteShops(@PathVariable int shopId){
         shopsService.deleteShops(shopId);
