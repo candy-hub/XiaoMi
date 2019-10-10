@@ -111,4 +111,23 @@ public class ShopsServiceImpl implements ShopsService {
         r.setTotal(all.getTotalElements());
         return r;
     }
+
+    @Override
+    public Response orderShops(int page, int size, String name) {
+
+        Pageable pages = PageRequest.of(page-1,size);
+        Page<Shops> all=null;
+        if (name.equals("shopPrice")){
+            all = shopsRepository.findAllByOrderByShopPrice(pages);
+        }
+        if (name.equals("shopNumber")){
+            all=shopsRepository.findAllByOrderByShopNumber(pages);
+        }if (name.equals("skName")){
+            all=shopsRepository.findAllByOrderBySkId(pages);
+        }
+        Response<Shops> r=new Response<>();
+        r.setList(all.getContent());
+        r.setTotal(all.getTotalElements());
+        return r;
+    }
 }
