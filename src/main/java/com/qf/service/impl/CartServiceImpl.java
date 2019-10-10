@@ -17,8 +17,8 @@ public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
     @Override
-    public List<Cart> findAll() {
-        return cartRepository.findAll();
+    public List<Cart> findAll(int uId) {
+        return cartRepository.findAllByUId(uId);
     }
 
     @Override

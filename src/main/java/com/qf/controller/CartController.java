@@ -15,10 +15,10 @@ public class CartController {
     @Resource
     private CartService cartService;
 
-    @RequestMapping("/findAllCart")
-    public List<Cart> findAll(HttpSession session){
-
-        return cartService.findAll();
+    @RequestMapping("/findAllCart/{uid}")
+    public List<Cart> findAll(@PathVariable int uid){
+        System.out.println(uid);
+        return cartService.findAll(uid);
     }
 
     /*从详情页加入购物车*/

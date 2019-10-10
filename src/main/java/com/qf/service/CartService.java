@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CartService {
 
-    List<Cart> findAll();
+    List<Cart> findAll(int uId);
 
     Cart addCart(AddCart cart);
 
