@@ -14,7 +14,7 @@ public interface OrdersService {
 
     List<Orders> submitForm2(List<Cart> listCart,int uid);
 
-    List<Orders> findPayOrders(Integer  Statue);
+    List<Orders> findPayOrders(Integer  Statue,int uid);
 
     void deleteById(int oId);
 

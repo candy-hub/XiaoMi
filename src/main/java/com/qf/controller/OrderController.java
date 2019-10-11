@@ -35,14 +35,14 @@ public class OrderController {
         return ordersService.submitForm2(listCart,uid);
     }
 
-    @RequestMapping("/findNotPayOrders")
-    public List<Orders> findNotPayOrders(){
-        return ordersService.findPayOrders(0);
+    @RequestMapping("/findNotPayOrders/{uid}")
+    public List<Orders> findNotPayOrders(@PathVariable int uid){
+        return ordersService.findPayOrders(0,uid);
     }
 
-    @RequestMapping("/findAlreadyPayOrders")
-    public List<Orders>findAlreadyPayOrders(){
-        return ordersService.findPayOrders(1);
+    @RequestMapping("/findAlreadyPayOrders/{uid}")
+    public List<Orders>findAlreadyPayOrders(@PathVariable int uid){
+        return ordersService.findPayOrders(1,uid);
     }
 
     @RequestMapping("/deleteOrders/{oId}")

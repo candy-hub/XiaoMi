@@ -64,6 +64,7 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Orders> submitForm2(List<Cart> listCart,int uid) {
         Optional<Users> byId = usersRepository.findById(uid);
         Users users=byId.get();
+        System.out.println(listCart);
         List<Orders> listOrders=new ArrayList<>();
         Orders orders=new Orders();
         for(Cart cart:listCart){
@@ -91,8 +92,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Orders> findPayOrders(Integer  Statue) {
-        return ordersRepository.findByOStatue(Statue);
+    public List<Orders> findPayOrders(Integer  Statue,int uid) {
+        return ordersRepository.findAllByUIdAndOStatue(uid,Statue);
     }
 
     @Override
