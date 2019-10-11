@@ -4,10 +4,7 @@ package com.qf.controller;
 import com.qf.domain.Role;
 import com.qf.service.RoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,29 +15,30 @@ public class RoleController {
     @Resource
     RoleService roleService;
 
-    @RequestMapping("/findAllRoles")
+    @RequestMapping(value = "/findAllRoles",method = RequestMethod.GET)
     public List<Role> findAllRoles(){
         return roleService.findAllRoles();
     }
 
     @RequiresPermissions(value = {"addRole"})
-    @RequestMapping("/insertRole")
+    @RequestMapping(value = "/insertRole",method = RequestMethod.POST)
     public String insert(@RequestBody Role role){
      return roleService.insert(role);
     }
 
-    @RequestMapping("/selectRoleById/{ids}")
+    @RequestMapping(value = "/selectRoleById/{ids}",method = RequestMethod.GET)
     public Role selectById(@PathVariable("ids") Integer id){
         return roleService.selectById(id);
     }
+
     @RequiresPermissions(value = {"updateRole"})
-    @RequestMapping("/updateRole")
+    @RequestMapping(value = "/updateRole",method = RequestMethod.POST)
     public String update(@RequestBody Role role){
         return roleService.update(role);
     }
 
     @RequiresPermissions(value = {"delRole"})
-    @RequestMapping("/deleteRole/{id}")
+    @RequestMapping(value = "/deleteRole/{id}",method = RequestMethod.GET)
     public String delete(@PathVariable ("id") Integer id){
         return roleService.delete(id);
     }

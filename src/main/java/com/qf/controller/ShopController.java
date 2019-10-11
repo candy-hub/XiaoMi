@@ -80,25 +80,25 @@ public class ShopController {
     /*
      * 后台商品管理
      */
-    @RequestMapping("/findAllShops/{page}/{size}")
+    @RequestMapping(value = "/findAllShops/{page}/{size}",method = RequestMethod.GET)
     public Response findAllShops(@PathVariable("page") int page, @PathVariable("size") int size){
         return shopsService.findAllShops(page,size);
     }
 
-    @RequestMapping("/findByValues/{page}/{size}")
+    @RequestMapping(value = "/findByValues/{page}/{size}",method = RequestMethod.POST)
     public Response findByValues(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ShopFuzzyQuery shopFuzzyQuery){
 
         return shopsService.ShopFuzzyQuery(page,size,shopFuzzyQuery);
     }
 
-    @RequestMapping("/orderShops/{page}/{size}/{name}")
+    @RequestMapping(value = "/orderShops/{page}/{size}/{name}",method = RequestMethod.POST)
     public Response orderShops(@PathVariable("page") int page, @PathVariable("size") int size,@PathVariable("name") String name){
         System.out.println(name);
         return shopsService.orderShops(page,size,name);
     }
 
     @RequiresPermissions(value = {"deleteShops"})
-    @RequestMapping("/deleteShops/{shopId}")
+    @RequestMapping(value = "/deleteShops/{shopId}",method = RequestMethod.GET)
     public String deleteShops(@PathVariable int shopId){
 
         return  shopsService.deleteShops(shopId);
@@ -121,18 +121,18 @@ public class ShopController {
     }
 
     @RequiresPermissions(value = {"addShops"})
-    @RequestMapping("/addShops")
+    @RequestMapping(value = "/addShops",method = RequestMethod.POST)
     public String addShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
-    @RequestMapping("/findShopsById/{shopId}")
+    @RequestMapping(value = "/findShopsById/{shopId}",method = RequestMethod.GET)
     public Shops findShopsById(@PathVariable int shopId){
         return shopsService.findByShopId(shopId);
     }
 
     @RequiresPermissions(value = {"updateShops"})
-    @RequestMapping("/updateShops")
+    @RequestMapping(value = "/updateShops",method = RequestMethod.POST)
     public String updateShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
@@ -140,29 +140,29 @@ public class ShopController {
     /*
     *后台商品类别管理
     */
-    @RequestMapping("/findAllKinds/{page}/{size}")
+    @RequestMapping(value = "/findAllKinds/{page}/{size}",method = RequestMethod.GET)
     public Response findAllKinds(@PathVariable("page") int page, @PathVariable("size") int size){
         return shopKindsService.findAllShopKinds(page,size);
     }
 
-    @RequestMapping("/addShopKinds")
+    @RequestMapping(value = "/addShopKinds",method = RequestMethod.POST)
     public String addShopKinds(@RequestBody ShopKinds shopKinds){
 
         return shopKindsService.addShopKinds(shopKinds);
     }
 
-    @RequestMapping("findShopKindsById/{skId}")
+    @RequestMapping(value = "findShopKindsById/{skId}",method = RequestMethod.GET)
     public ShopKinds findShopKindsById(@PathVariable int skId){
         return shopKindsService.findShopKindsById(skId);
     }
 
-    @RequestMapping("/updateShopKinds")
+    @RequestMapping(value = "/updateShopKinds",method = RequestMethod.POST)
     public ShopKinds updateShopKinds(@RequestBody ShopKinds shopKinds){
 
         return shopKindsService.updateShopKinds(shopKinds);
     }
 
-    @RequestMapping("/deleteShopKinds/{skId}")
+    @RequestMapping(value = "/deleteShopKinds/{skId}",method = RequestMethod.GET)
     public void deleteShopKinds(@PathVariable int skId){
 
        shopKindsService.deleteShopKinds(skId);
