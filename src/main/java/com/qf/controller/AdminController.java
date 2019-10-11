@@ -5,6 +5,7 @@ import com.qf.response.Login;
 import com.qf.service.AdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,6 +72,7 @@ public class AdminController {
     }
 
     //新增管理员
+    @RequiresPermissions(value = {"addAdmin"})
     @RequestMapping("/insert")
     public String insert(@RequestBody Admin admin){
         //System.out.println(admin);
@@ -82,12 +84,14 @@ public class AdminController {
     public Admin selectById(@PathVariable ("ids") Integer id){
        return adminService.selectById(id);
     }
+    @RequiresPermissions(value = {"updateAdmin"})
     @RequestMapping("/update")
     public String update(@RequestBody Admin admin){
         return adminService.update(admin);
     }
 
     //删除管理员
+    @RequiresPermissions(value = {"deleteAdmin"})
      @RequestMapping("/delete/{id}")
     public String delete(@PathVariable ("id") Integer id){
         return adminService.delete(id);

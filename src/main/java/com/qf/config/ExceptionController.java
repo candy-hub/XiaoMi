@@ -15,12 +15,12 @@ public class ExceptionController {
 
     @ExceptionHandler(value = UnauthorizedException.class)
     public String defaultErrorHandler(){
-        return "unauth";
+        return "0";
     }
 
     @ExceptionHandler(value = AuthorizationException.class)
     public String AuthorizationExceptionHandle(Exception e){
         System.out.println(e.getMessage());
-        return "权限不够";
+        return "0";
     }
 }

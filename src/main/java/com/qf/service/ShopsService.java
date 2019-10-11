@@ -23,13 +23,13 @@ public interface ShopsService {
     */
     Response findAllShops(int page, int size);
 
-    void deleteShops(int shopId);
+    String  deleteShops(int shopId);
 
-    Shops addShops(Shops shops);
+   String addShops(Shops shops);
 
     Shops findShopsById(int shopId);
 
-    Shops updateShops(Shops Shops);
+    String  updateShops(Shops Shops);
 
     Response ShopFuzzyQuery(int page, int size,ShopFuzzyQuery shopFuzzyQuery); //模糊查询
 

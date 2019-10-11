@@ -9,6 +9,7 @@ import com.qf.response.ShopFuzzyQuery;
 import com.qf.service.ShopKindsService;
 import com.qf.service.ShopsService;
 import com.qf.utils.UploadUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -99,9 +100,11 @@ public class ShopController {
         return shopsService.orderShops(page,size,name);
     }
 
+    @RequiresPermissions(value = {"deleteShops"})
     @RequestMapping("/deleteShops/{shopId}")
-    public void deleteShops(@PathVariable int shopId){
-        shopsService.deleteShops(shopId);
+    public String deleteShops(@PathVariable int shopId){
+
+        return  shopsService.deleteShops(shopId);
     }
 
     /*小图上传*/
@@ -120,8 +123,9 @@ public class ShopController {
 
     }
 
+    @RequiresPermissions(value = {"addShops"})
     @RequestMapping("/addShops")
-    public Shops addShops(@RequestBody Shops shops){
+    public String addShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
@@ -130,8 +134,9 @@ public class ShopController {
         return shopsService.findByShopId(shopId);
     }
 
+    @RequiresPermissions(value = {"updateShops"})
     @RequestMapping("/updateShops")
-    public Shops updateShops(@RequestBody Shops shops){
+    public String updateShops(@RequestBody Shops shops){
         return shopsService.addShops(shops);
     }
 
