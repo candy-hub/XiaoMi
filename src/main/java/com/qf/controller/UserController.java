@@ -6,10 +6,7 @@ import com.qf.response.UserCode;
 import com.qf.service.CodeService;
 import com.qf.service.UsersService;
 import com.qf.utils.EmailUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -27,7 +24,7 @@ public class UserController {
     private CodeService codeService;
 
 
-    @RequestMapping("/sendEmail")
+    @RequestMapping(value = "/sendEmail",method = RequestMethod.POST)
     public String sendEmail(@RequestBody Users users){
         String uEmail=users.getUEmail();
         return emailUtils.sendEmail(uEmail);
@@ -35,7 +32,7 @@ public class UserController {
     /*
      * 注册
      */
-    @RequestMapping("/userRegister")
+    @RequestMapping(value = "/userRegister",method = RequestMethod.POST)
     public String register(@RequestBody UserCode userCode){
         String msg="";
         Users users=userCode.getUsers();
@@ -64,7 +61,7 @@ public class UserController {
     /*
      * 登录
      */
-    @RequestMapping("/userLogin")
+    @RequestMapping(value = "/userLogin",method = RequestMethod.POST)
     public Users userLogin(@RequestBody Login login){
 //        System.out.println(login);
         Users users=usersService.login(login);
@@ -72,14 +69,14 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping("/findUserByUid/{uId}")
+    @RequestMapping(value = "/findUserByUid/{uId}",method = RequestMethod.GET)
     public Users findById(@PathVariable int uId){
 //        Object user = session.getAttribute("user");
 //        System.out.println(user);
         return usersService.findById(uId);
     }
 
-    @RequestMapping("/updateUser")
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
     public String updateUser(@RequestBody Users users){
 
         return usersService.updateUser(users);

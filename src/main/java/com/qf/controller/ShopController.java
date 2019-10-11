@@ -11,10 +11,7 @@ import com.qf.service.ShopsService;
 import com.qf.utils.UploadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -37,44 +34,44 @@ public class ShopController {
     private Logger logger = LoggerFactory.getLogger(ShopController.class);
 
 
-    @RequestMapping("findById/{shopId}")
+    @RequestMapping(value = "findById/{shopId}",method = RequestMethod.GET)
     public Shops findById(@PathVariable int shopId){
         return shopsService.findByShopId(shopId);
     }
 
     //一级菜单
-    @RequestMapping("/show1")
+    @RequestMapping(value = "/show1",method = RequestMethod.GET)
     public List<ShopKinds> show1(){
         //System.out.println(shopKindsService.show1());
         return shopKindsService.show1();
     }
 
     //轮播图
-    @RequestMapping("/showlbt")
+    @RequestMapping(value = "/showlbt",method = RequestMethod.GET)
     public List<Shops> showlbt(){
         return shopsService.showlbt(1);
     }
 
     //手机专场
-    @RequestMapping("/showPhone")
+    @RequestMapping(value = "/showPhone",method = RequestMethod.GET)
     public List<Shops> showPhone(){
         return shopsService.showlbt(2);
     }
 
     //二级菜单
-    @RequestMapping("/show2/{ids}")
+    @RequestMapping(value = "/show2/{ids}",method = RequestMethod.GET)
     public List<Shops> show2(@PathVariable("ids") Integer skId){
           return shopsService.show2(skId);
     }
 
     //热卖商品
-    @RequestMapping("/showRM/{page}/{size}")
+    @RequestMapping(value = "/showRM/{page}/{size}",method = RequestMethod.GET)
     public ResponseShops showRM(@PathVariable("page") Integer page, @PathVariable("size") Integer size){
        return shopsService.showRM(page, size);
     }
 
     //模糊查询商品展示
-    @RequestMapping("/vague/{name}")
+    @RequestMapping(value = "/vague/{name}",method = RequestMethod.GET)
     public List<Shops> vague(@PathVariable("name") String name){
       return shopsService.vague(name);
     }
@@ -105,7 +102,7 @@ public class ShopController {
     }
 
     /*小图上传*/
-    @RequestMapping("/upload")
+    @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public String upload(MultipartFile file){
 
         logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));

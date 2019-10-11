@@ -6,6 +6,7 @@ import com.qf.utils.AlipayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,7 +15,7 @@ public class PayController {
     @Autowired
     private AlipayUtils alipayUtils;
 
-    @RequestMapping("/pay")
+    @RequestMapping(value = "/pay",method = RequestMethod.POST)
     public String pay(@RequestBody Orders orders){
         String pay="";
         try {

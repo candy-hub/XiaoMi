@@ -24,7 +24,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("qf.shiro"))
+                .apis(RequestHandlerSelectors.basePackage("com.qf.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

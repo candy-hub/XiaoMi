@@ -15,27 +15,27 @@ public class CartController {
     @Resource
     private CartService cartService;
 
-    @RequestMapping("/findAllCart/{uid}")
+    @RequestMapping(value = "/findAllCart/{uid}",method = RequestMethod.GET)
     public List<Cart> findAll(@PathVariable int uid){
         System.out.println(uid);
         return cartService.findAll(uid);
     }
 
     /*从详情页加入购物车*/
-    @RequestMapping("/addCart/{uid}")
+    @RequestMapping(value = "/addCart/{uid}",method = RequestMethod.POST)
     public Cart addCart(@RequestBody AddCart cart,@PathVariable int uid){
 
         return cartService.addCart(cart,uid);
     }
 
     /*修改购物车数量*/
-    @RequestMapping("/updateCart")
+    @RequestMapping(value = "/updateCart",method = RequestMethod.POST)
     public Cart saveCart(@RequestBody Cart cart){
 
         return cartService.updateCart(cart);
     }
 
-    @RequestMapping("/deleteCart/{cId}")
+    @RequestMapping(value = "/deleteCart/{cId}",method = RequestMethod.GET)
     public String deleteCart(@PathVariable int cId){
         System.out.println(cId);
         cartService.deleteById(cId);

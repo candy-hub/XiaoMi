@@ -6,10 +6,7 @@ import com.qf.domain.Orders;
 import com.qf.domain.Shops;
 import com.qf.response.AddCart;
 import com.qf.service.OrdersService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,28 +17,28 @@ public class OrderController {
     @Resource
     public OrdersService ordersService;
 
-    @RequestMapping("/userOrder1/{uid}")
+    @RequestMapping(value = "/userOrder1/{uid}",method = RequestMethod.POST)
     public Orders submitForm1(@RequestBody AddCart addCart, @PathVariable int uid){
         Orders orders=ordersService.submitForm1(addCart,uid);
         return orders;
     }
 
-    @RequestMapping("/findAllOrder/{uid}")
+    @RequestMapping(value = "/findAllOrder/{uid}",method = RequestMethod.GET)
     public List<Orders> findAllOrder(@PathVariable int uid){
         return ordersService.findAllOrders(uid);
     }
 
-    @RequestMapping("/userOrder2/{uid}")
+    @RequestMapping(value = "/userOrder2/{uid}",method = RequestMethod.POST)
     public List<Orders> submitForm2(@RequestBody List<Cart> listCart, @PathVariable int uid){
         return ordersService.submitForm2(listCart,uid);
     }
 
-    @RequestMapping("/findNotPayOrders/{uid}")
+    @RequestMapping(value = "/findNotPayOrders/{uid}",method = RequestMethod.GET)
     public List<Orders> findNotPayOrders(@PathVariable int uid){
         return ordersService.findPayOrders(0,uid);
     }
 
-    @RequestMapping("/findAlreadyPayOrders/{uid}")
+    @RequestMapping(value = "/findAlreadyPayOrders/{uid}",method = RequestMethod.GET)
     public List<Orders>findAlreadyPayOrders(@PathVariable int uid){
         return ordersService.findPayOrders(1,uid);
     }

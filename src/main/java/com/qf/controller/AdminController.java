@@ -6,10 +6,7 @@ import com.qf.service.AdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,7 +29,7 @@ public class AdminController {
     /*
      * 登录
      */
-    @RequestMapping("/adminLogin")
+    @RequestMapping(value = "/adminLogin",method = RequestMethod.POST)
     public String adminLogin(@RequestBody Login login){
         String loginName= login.getLoginName();
         String password=login.getPassword();
@@ -65,7 +62,7 @@ public class AdminController {
     }
 
     //查看管理员
-    @RequestMapping("/findAll")
+    @RequestMapping(value = "/findAll",method = RequestMethod.GET)
     public List<Admin> findAll(){
      return adminService.findAll();
     }
