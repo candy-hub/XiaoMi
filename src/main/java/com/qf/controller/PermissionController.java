@@ -2,6 +2,7 @@ package com.qf.controller;
 
 import com.qf.domain.Permission;
 import com.qf.service.PermissionService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,19 +19,25 @@ public class PermissionController {
         return permissionService.findAllPermissions();
     }
 
-
+    @RequiresPermissions(value = {"addPermission"})
     @RequestMapping("/addPermission")
-    public Permission addPermission(@RequestBody Permission permission){
+    public String addPermission(@RequestBody Permission permission){
         return permissionService.addPermission(permission);
     }
 
-    @RequestMapping("/findPermissionById/{pId}")
-    public Permission findShopsById(@PathVariable int pId){
-        return permissionService.findPermissionById(pId);
+    @RequestMapping("/findPermissionById/{pid}")
+    public Permission findShopsById(@PathVariable("pid") Integer pid){
+         return permissionService.findPermissionById(pid);
+    }
+    @RequiresPermissions(value = {"updatePermission"})
+    @RequestMapping("/updatePermission")
+    public String updateShops(@RequestBody Permission permission){
+        return permissionService.updatePermission(permission);
     }
 
-    @RequestMapping("/updatePermission")
-    public Permission updateShops(@RequestBody Permission permission){
-        return permissionService.updatePermission(permission);
+    @RequiresPermissions(value = {"deletePermission"})
+    @RequestMapping("/deletePermission/{pid}")
+    public String delete(@PathVariable("pid") Integer id){
+       return permissionService.delete(id);
     }
 }

@@ -71,23 +71,30 @@ public class ShopsServiceImpl implements ShopsService {
     }
 
     @Override
-    public void deleteShops(int shopId) {
+    public String  deleteShops(int shopId) {
+
         shopsRepository.deleteById(shopId);
+        return "1";
     }
 
     @Override
-    public Shops addShops(Shops shops) {
-        return shopsRepository.save(shops);
+    public String addShops(Shops shops) {
+
+        shopsRepository.save(shops);
+        return "1";
     }
 
     @Override
     public Shops findShopsById(int shopId) {
-        return shopsRepository.findByShopId(shopId);
+
+       return shopsRepository.findByShopId(shopId);
     }
 
     @Override
-    public Shops updateShops(Shops shops) {
-        return shopsRepository.save(shops);
+    public String updateShops(Shops shops) {
+
+        shopsRepository.save(shops);
+        return "1";
     }
 
     @Override

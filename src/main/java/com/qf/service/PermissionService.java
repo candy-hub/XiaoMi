@@ -8,10 +8,12 @@ public interface PermissionService {
 
     List<Permission> findAllPermissions();
 
-    Permission addPermission(Permission permission);
+    String addPermission(Permission permission);
 
-    Permission findPermissionById(int PId);
+    Permission findPermissionById(Integer Pid);
 
-    Permission updatePermission(Permission permission);
+    String updatePermission(Permission permission);
+
+    String delete(Integer id);
 
 }

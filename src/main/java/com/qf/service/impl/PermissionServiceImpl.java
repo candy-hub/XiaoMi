@@ -21,17 +21,26 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public Permission addPermission(Permission permission) {
-        return permissionRepository.save(permission);
+    public String addPermission(Permission permission) {
+
+         permissionRepository.save(permission);
+        return "1";
     }
 
     @Override
-    public Permission findPermissionById(int PId) {
-        return permissionRepository.findByPId(PId);
+    public Permission findPermissionById(Integer Pid) {
+        return permissionRepository.findByPId(Pid);
     }
 
     @Override
-    public Permission updatePermission(Permission permission) {
-        return permissionRepository.saveAndFlush(permission);
+    public String updatePermission(Permission permission) {
+         permissionRepository.saveAndFlush(permission);
+        return "1";
+    }
+
+    @Override
+    public String delete(Integer id) {
+         permissionRepository.deleteById(id);
+         return "1";
     }
 }
