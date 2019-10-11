@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -17,5 +18,33 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> findAllRoles() {
         return roleRepository.findAll();
+    }
+
+    @Override
+    public String insert(Role role) {
+         roleRepository.save(role);
+         return "1";
+    }
+
+    @Override
+    public Role selectById(Integer id) {
+        Optional<Role> byId = roleRepository.findById(id);
+        if(byId.isPresent()){
+            Role role=byId.get();
+            return role;
+        }
+        return null;
+    }
+
+    @Override
+    public String update(Role role) {
+        roleRepository.saveAndFlush(role);
+        return "1";
+    }
+
+    @Override
+    public String delete(Integer id) {
+        roleRepository.deleteById(id);
+        return "1";
     }
 }

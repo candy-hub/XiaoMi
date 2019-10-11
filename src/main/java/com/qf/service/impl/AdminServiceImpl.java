@@ -1,7 +1,9 @@
 package com.qf.service.impl;
 
 import com.qf.dao.AdminRepository;
+import com.qf.dao.RoleRepository;
 import com.qf.domain.Admin;
+import com.qf.domain.Role;
 import com.qf.service.AdminService;
 import com.qf.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
     @Autowired
     private Md5Utils md5Utils;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public List<Admin> findAll() {
@@ -31,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
         admin.setAPassword(md5Utils.getPassword(admin.getAName(),admin.getAPassword()));
         admin.setCreateTime(new Date());
          adminRepository.save(admin);
-         return "1";
+        return "1";
     }
 
     @Override
