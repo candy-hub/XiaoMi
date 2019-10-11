@@ -1,6 +1,5 @@
 package com.qf.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.qf.domain.ResponseShops;
 import com.qf.domain.ShopKinds;
 import com.qf.domain.Shops;
@@ -10,13 +9,10 @@ import com.qf.service.ShopKindsService;
 import com.qf.service.ShopsService;
 import com.qf.utils.UploadUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,9 +27,6 @@ public class ShopController {
 
     @Resource
     private UploadUtils uploadUtils;
-
-    private Logger logger = LoggerFactory.getLogger(ShopController.class);
-
 
     @RequestMapping(value = "findById/{shopId}",method = RequestMethod.GET)
     public Shops findById(@PathVariable int shopId){
@@ -108,9 +101,8 @@ public class ShopController {
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public String upload(MultipartFile file){
 
-        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
+//        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
-            logger.error("文件为空");
             return "fail";
         }else {
             String path = uploadUtils.upload(file);

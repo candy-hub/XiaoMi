@@ -63,7 +63,6 @@ public class UserController {
      */
     @RequestMapping(value = "/userLogin",method = RequestMethod.POST)
     public Users userLogin(@RequestBody Login login){
-//        System.out.println(login);
         Users users=usersService.login(login);
 //        session.setAttribute("user",users);
         return users;
