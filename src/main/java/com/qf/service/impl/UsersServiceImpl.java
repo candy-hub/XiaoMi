@@ -35,11 +35,16 @@ public class UsersServiceImpl implements UsersService {
 
     /*判断用户名是否存在*/
     @Override
-    public Users findByRegisterName(Users users) {
+    public String findByRegisterName(Users users) {
         String uEmail=users.getUEmail();
         String uTell=users.getUTell();
         String uName=users.getUName();
-        return usersRepository.findAllByUEmailOrUNameOrUTell(uEmail,uName,uTell).get(0);
+        List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(uEmail, uName, uTell);
+        if (all.size()>0){
+            return "fail";
+        }else {
+            return "success";
+        }
     }
 
     @Override

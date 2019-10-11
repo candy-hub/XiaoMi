@@ -38,7 +38,7 @@ public class UserController {
         Users users=userCode.getUsers();
         String code=userCode.getCode();
 
-        if (usersService.findByRegisterName(users)!=null){
+        if (usersService.findByRegisterName(users)!="success"){
             msg="用户名已存在";
             return msg;
         }
@@ -50,6 +50,8 @@ public class UserController {
 
             }else if (i == 3) {
                 msg = "验证码错误";
+            }else if (i == 4) {
+                msg = "未发送验证码，请发送验证码";
             }
             return msg;
         }else {
