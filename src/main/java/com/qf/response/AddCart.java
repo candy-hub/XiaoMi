@@ -8,6 +8,6 @@ import java.math.BigDecimal;
 @Data
 public class AddCart {
     private Shops shop;
-    private Integer num;
-    private BigDecimal total;
+    private Integer num;  //选中商品数量
+    private BigDecimal total;  //选中商品总价
 }
