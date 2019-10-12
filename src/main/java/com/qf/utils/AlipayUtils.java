@@ -21,7 +21,7 @@ public class AlipayUtils {
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":\""+orders.getONumber()+"\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-                "    \"total_amount\":\""+orders.getShopPrice()+"\"," +
+                "    \"total_amount\":\""+orders.getShopCount()+"\"," +
                 "    \"subject\":\""+orders.getShopName()+"\"," +
                 "    \"body\":\""+orders.getShopName()+"\"," +
                 "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
