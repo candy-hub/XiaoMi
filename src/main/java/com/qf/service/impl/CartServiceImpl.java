@@ -60,6 +60,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int findCartCount(int uid) {
-        return cartMapper.findCartCount(uid);
+        if (cartMapper.findCartCount(uid)>0){
+            return cartMapper.findCartCount(uid);
+
+        }else {
+            return 0;
+        }
     }
 }
