@@ -48,23 +48,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users login(Login login) {
+    public String login(Login login) {
         String loginName= login.getLoginName();
         String password=login.getPassword();
         //登录时进行MD5加密
         List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(loginName, loginName, loginName);
         if(all.size()==0){
-            return null;
+            return "用户名不存在";
         }else if (all.size()==1) {
             String pass = md5Utils.getPassword(all.get(0).getUName(), password);
 
             if (all.get(0).getUPassword().equals(pass)) {
-                return all.get(0);
+                return "success";
             }
         }else {
-            return null;
+            return "登录失败";
         }
-        return null;
+        return "登录失败";
     }
     /*
     *先查id
@@ -82,6 +82,12 @@ public class UsersServiceImpl implements UsersService {
             return "fail";
         }
 
+    }
+
+    @Override
+    public Users findByName(String uname) {
+        List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(uname, uname, uname);
+        return all.get(0);
     }
 
 }

@@ -64,17 +64,19 @@ public class UserController {
      * 登录
      */
     @RequestMapping(value = "/userLogin",method = RequestMethod.POST)
-    public Users userLogin(@RequestBody Login login){
-        Users users=usersService.login(login);
-//        session.setAttribute("user",users);
-        return users;
+    public String userLogin(@RequestBody Login login){
+        return usersService.login(login);
     }
 
     @RequestMapping(value = "/findUserByUid/{uId}",method = RequestMethod.GET)
     public Users findById(@PathVariable int uId){
-//        Object user = session.getAttribute("user");
-//        System.out.println(user);
         return usersService.findById(uId);
+    }
+
+    @RequestMapping(value = "/findUserByName/{uname}",method = RequestMethod.POST)
+    public Users findByName(@PathVariable String uname){
+
+        return usersService.findByName(uname);
     }
 
     @RequestMapping(value = "/updateUser",method = RequestMethod.POST)

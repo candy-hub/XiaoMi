@@ -14,8 +14,10 @@ public interface UsersService {
 
     String findByRegisterName(Users users);
 
-    Users login(Login login);
+    String login(Login login);
 
     String updateUser(Users users);
+
+    Users findByName(String uname);
 
 }
