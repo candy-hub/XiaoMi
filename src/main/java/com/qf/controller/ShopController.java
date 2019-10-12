@@ -33,6 +33,12 @@ public class ShopController {
         return shopsService.findByShopId(shopId);
     }
 
+    //详情页轮播图
+    @RequestMapping(value = "findPic/{shopId}",method = RequestMethod.GET)
+    public List findPic(@PathVariable Integer shopId){
+        return shopsService.findPic(shopId);
+    }
+
     //一级菜单
     @RequestMapping(value = "/show1",method = RequestMethod.GET)
     public List<ShopKinds> show1(){

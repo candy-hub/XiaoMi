@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,16 @@ public class ShopsServiceImpl implements ShopsService {
     @Override
     public Shops findByShopId(int shopId) {
         return shopsRepository.findByShopId(shopId);
+    }
+
+    @Override
+    public List findPic(Integer shopId) {
+        Shops shop = shopsRepository.findByShopId(shopId);
+        List list=new ArrayList();
+        list.add(shop.getShopBigPic());
+        list.add(shop.getShopBigPic1());
+        list.add(shop.getShopBigPic2());
+        return list;
     }
 
     @Override

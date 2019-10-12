@@ -10,6 +10,8 @@ import java.util.List;
 public interface ShopsService {
     Shops findByShopId(int shopId);
 
+    List findPic(Integer shopId);
+
     List<Shops> show2(Integer skId);
 
     List<Shops> showlbt(Integer status);

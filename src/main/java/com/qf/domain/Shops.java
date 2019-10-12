@@ -55,4 +55,10 @@ public class Shops {
 
     private Integer status;
 
+    @Column(name = "shop_bigpic1")
+    private String shopBigPic1;
+
+    @Column(name = "shop_bigpic2")
+    private String shopBigPic2;
+
 }
