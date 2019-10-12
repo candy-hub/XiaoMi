@@ -20,27 +20,31 @@ public class CodeServiceImpl implements CodeService {
     public int sendTo(Users users, String code) {
         String useremail = users.getUEmail();
         Code co = codeRepository.findByUEmail(useremail);
-        Date createTime = co.getCreateTime();
-        Date nowTime = new Date();
+        if (co == null) {
+            return 4;
+        } else {
+            Date createTime = co.getCreateTime();
+            Date nowTime = new Date();
 //        System.out.println(nowTime);
 //        System.out.println(createTime);
-        long i = nowTime.getTime()-createTime.getTime();  //比较毫秒值
+            long i = nowTime.getTime() - createTime.getTime();  //比较毫秒值
 //        System.out.println(i);
-        if (i >= 60000) {
-            //失效
-            co.setCStatue(0);
-            codeRepository.save(co);
-            return 2;
-        } else {
-            if (co.getCCode().equals(code)) {
+            if (i >= 60000) {
+                //失效
                 co.setCStatue(0);
                 codeRepository.save(co);
-                return 1;
+                return 2;
             } else {
-                return 3;
+                if (co.getCCode().equals(code)) {
+                    co.setCStatue(0);
+                    codeRepository.save(co);
+                    return 1;
+                } else {
+                    return 3;
+                }
             }
+            // return 1;
         }
-        // return 1;
     }
 }
 

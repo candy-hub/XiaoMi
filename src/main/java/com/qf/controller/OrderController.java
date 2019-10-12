@@ -43,7 +43,7 @@ public class OrderController {
         return ordersService.findPayOrders(1,uid);
     }
 
-    @RequestMapping("/deleteOrders/{oId}")
+    @RequestMapping(value = "/deleteOrders/{oId}",method = RequestMethod.POST)
     public String deleteOrders(@PathVariable int oId){
         ordersService.deleteById(oId);
         return "1";

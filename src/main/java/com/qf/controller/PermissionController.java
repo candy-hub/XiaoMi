@@ -14,29 +14,29 @@ public class PermissionController {
     @Resource
     PermissionService permissionService;
 
-    @RequestMapping("/findAllPermissions")
+    @RequestMapping(value = "/findAllPermissions",method = RequestMethod.GET)
     public List<Permission> findAllRoles(){
         return permissionService.findAllPermissions();
     }
 
     @RequiresPermissions(value = {"addPermission"})
-    @RequestMapping("/addPermission")
+    @RequestMapping(value = "/addPermission",method = RequestMethod.POST)
     public String addPermission(@RequestBody Permission permission){
         return permissionService.addPermission(permission);
     }
 
-    @RequestMapping("/findPermissionById/{pid}")
+    @RequestMapping(value ="/findPermissionById/{pid}",method = RequestMethod.POST)
     public Permission findShopsById(@PathVariable("pid") Integer pid){
          return permissionService.findPermissionById(pid);
     }
     @RequiresPermissions(value = {"updatePermission"})
-    @RequestMapping("/updatePermission")
+    @RequestMapping(value ="/updatePermission",method = RequestMethod.POST)
     public String updateShops(@RequestBody Permission permission){
         return permissionService.updatePermission(permission);
     }
 
     @RequiresPermissions(value = {"deletePermission"})
-    @RequestMapping("/deletePermission/{pid}")
+    @RequestMapping(value = "/deletePermission/{pid}",method = RequestMethod.POST)
     public String delete(@PathVariable("pid") Integer id){
        return permissionService.delete(id);
     }

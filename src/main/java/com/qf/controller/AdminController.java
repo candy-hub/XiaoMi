@@ -70,26 +70,26 @@ public class AdminController {
 
     //新增管理员
     @RequiresPermissions(value = {"addAdmin"})
-    @RequestMapping("/insert")
+    @RequestMapping(value = "/insert",method = RequestMethod.POST)
     public String insert(@RequestBody Admin admin){
         //System.out.println(admin);
         return adminService.insert(admin);
     }
 
     //修改管理员
-    @RequestMapping("/selectById/{ids}")
+    @RequestMapping(value = "/selectById/{ids}",method = RequestMethod.GET)
     public Admin selectById(@PathVariable ("ids") Integer id){
        return adminService.selectById(id);
     }
     @RequiresPermissions(value = {"updateAdmin"})
-    @RequestMapping("/update")
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public String update(@RequestBody Admin admin){
         return adminService.update(admin);
     }
 
     //删除管理员
     @RequiresPermissions(value = {"deleteAdmin"})
-     @RequestMapping("/delete/{id}")
+     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
     public String delete(@PathVariable ("id") Integer id){
         return adminService.delete(id);
      }
