@@ -15,7 +15,6 @@ public class CodeServiceImpl implements CodeService {
     @Resource
     private CodeRepository codeRepository;
 
-
     @Override
     public int sendTo(Users users, String code) {
         String useremail = users.getUEmail();
@@ -46,5 +45,6 @@ public class CodeServiceImpl implements CodeService {
             // return 1;
         }
     }
+
 }
 

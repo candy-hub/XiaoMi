@@ -10,4 +10,5 @@ public interface CartRepository extends JpaRepository<Cart,Integer> {
     Cart findByShopName(String shopName);
 
     List<Cart> findAllByUId(int uId);
+
 }

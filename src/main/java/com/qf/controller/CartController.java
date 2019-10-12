@@ -17,8 +17,12 @@ public class CartController {
 
     @RequestMapping(value = "/findAllCart/{uid}",method = RequestMethod.GET)
     public List<Cart> findAll(@PathVariable int uid){
-        System.out.println(uid);
         return cartService.findAll(uid);
+    }
+
+    @RequestMapping(value = "/count/{uid}",method = RequestMethod.POST)
+    public Integer findCartCount(@PathVariable int uid){
+        return cartService.findCartCount(uid);
     }
 
     /*从详情页加入购物车*/
@@ -37,7 +41,6 @@ public class CartController {
 
     @RequestMapping(value = "/deleteCart/{cId}",method = RequestMethod.GET)
     public String deleteCart(@PathVariable int cId){
-        System.out.println(cId);
         cartService.deleteById(cId);
         return "删除成功";
     }
