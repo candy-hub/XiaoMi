@@ -38,7 +38,7 @@ public class CartServiceImpl implements CartService {
         }else {
             c.setShopCount(cart.getNum());
             c.setShopName(shop.getShopName());
-            c.setShopPic(shop.getShopPic());
+            c.setShopPic(shop.getShopBigPic());
             c.setShopPrice(shop.getShopPrice());
             c.setShopTotal(cart.getTotal());
             c.setShopFactory(shop.getFactory());
