@@ -19,4 +19,8 @@ public interface OrdersService {
 
     void deleteById(int oId);
 
+    Orders findByONumber(String ONumber);
+
+    Orders updateStatue(Orders orders);
+
 }
