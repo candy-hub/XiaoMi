@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.CartRepository;
 import com.qf.dao.OrdersRepository;
+import com.qf.dao.ShopsRepository;
 import com.qf.dao.UsersRepository;
 import com.qf.domain.Cart;
 import com.qf.domain.Orders;
@@ -20,6 +21,9 @@ import java.util.Optional;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
+
+    @Resource
+    private ShopsRepository shopsRepository;
 
     @Resource
     private OrdersRepository ordersRepository;
@@ -110,6 +114,14 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Orders updateStatue(Orders orders) {
+        Shops shops=shopsRepository.findByShopName(orders.getShopName());
+        Integer num=orders.getShopNumber();
+        Integer ShopNumber=shops.getShopNumber();
+        Integer ShopRepertory=shops.getShopRepertory();
+        shops.setShopNumber(num+ShopNumber);
+        shops.setShopRepertory(ShopRepertory-num);
+        shopsRepository.save(shops);
+        orders.setOStatue(1);
         return ordersRepository.saveAndFlush(orders);
     }
 }

@@ -31,7 +31,7 @@ public class Shops {
     private BigDecimal shopPrice;
 
     @Column(name = "shop_number")
-    private Integer shopNumber;//商品库存
+    private Integer shopNumber;//商品销量
 
     @Column(name = "product_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -3,7 +3,9 @@ package com.qf.controller;
 import com.alipay.api.AlipayApiException;
 import com.qf.config.AlipayConfig;
 import com.qf.domain.Orders;
+import com.qf.domain.Shops;
 import com.qf.service.OrdersService;
+import com.qf.service.ShopsService;
 import com.qf.utils.AlipayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,13 +33,29 @@ public class PayController {
 
     @RequestMapping(value = "/pay",method = RequestMethod.POST)
     public String pay(@RequestBody List<Orders> listOrders){
+        /*StringBuffer stringBuffer=new StringBuffer();
+        BigDecimal b=new BigDecimal(0);
+        String s="";
+        String s1="";*/
         Orders orders1=new Orders();
         for(Orders orders:listOrders){
+            /*StringBuffer append = stringBuffer.append(orders.getONumber());
+            s = append.toString();
+            BigDecimal bigDecimal=b.add(orders.getShopCount());
+            b=bigDecimal;
+            StringBuffer append1 = stringBuffer.append(orders.getShopName());
+            s1 = append1.toString();*/
             orders1.setONumber(orders.getONumber());
             orders1.setShopCount(orders.getShopCount());
             orders1.setShopName(orders.getShopName());
             orders1.setOStatue(orders.getOStatue());
         }
+        /*Orders orders1=new Orders();
+        orders1.setONumber(s);
+        orders1.setShopCount(b);
+        orders1.setShopName(s1);
+        orders1.setOStatue(0);*/
+
         String pay="";
         try {
             pay = alipayUtils.pay(orders1);
@@ -80,8 +98,7 @@ public class PayController {
             throw new AlipayApiException("app_id不一致");
         }
 
-        System.out.println(orders);
-        orders.setOStatue(1);
+        //System.out.println(orders);
         ordersService.updateStatue(orders);
     }
 }

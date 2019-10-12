@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 import java.io.FileWriter;
 import java.io.IOException;
 
-@Component
-@Data
+
 public class AlipayConfig {
 
     public static String app_id = "2016101300674782";

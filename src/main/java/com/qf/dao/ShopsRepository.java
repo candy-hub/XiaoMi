@@ -34,4 +34,6 @@ public interface ShopsRepository extends JpaRepository<Shops,Integer> {
 
 //    List<Shops> findByShopPriceLike(Float shopPrice);
 
+    Shops findByShopName(String shopName);
+
 }
