@@ -37,22 +37,20 @@ public class PayController {
         Orders orders1=new Orders();
         for(Orders orders:listOrders){
             orders1.setONumber(orders.getONumber());
-            orders1.setShopPrice(orders.getShopPrice());
+            orders1.setShopCount(orders.getShopCount());
             orders1.setShopName(orders.getShopName());
             orders1.setOStatue(orders.getOStatue());
         }
-        //System.out.println(orders1);
         String pay="";
         try {
             pay = alipayUtils.pay(orders1);
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-        System.out.println(pay);
         return pay;
     }
 
-    @RequestMapping("/notify")
+    @RequestMapping(value = "/notify",method = RequestMethod.POST)
     public void Verify(HttpServletRequest request, HttpServletResponse response)throws AlipayApiException {
         Map<String,String> params = new HashMap<String,String>();
         Map requestParams = request.getParameterMap();
@@ -66,15 +64,18 @@ public class PayController {
             }
             params.put(name, valueStr);
         }
-        //System.out.println(params);
+        System.out.println(params);
 
         Orders orders=ordersService.findByONumber(params.get("out_trade_no"));
+        System.out.println(orders);
         if (orders == null) {
             throw new AlipayApiException("out_trade_no错误");
         }
 
-        long total_amount = new BigDecimal(params.get("total_amount")).multiply(new BigDecimal(100)).longValue();
-        if (total_amount != orders.getShopPrice().longValue()) {
+        BigDecimal shopCount = orders.getShopCount();
+        String total_amount = params.get("total_amount");
+        BigDecimal bigDecimal=new BigDecimal(total_amount);
+        if ((shopCount).compareTo(bigDecimal)!=0) {
             throw new AlipayApiException("error total_amount");
         }
 
