@@ -1,8 +1,13 @@
 package com.qf.config;
 
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
+@Component
+@Data
 public class AlipayConfig {
 
     public static String app_id = "2016101300674782";
@@ -14,10 +19,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1PkXywQHJhf2jZvLysHOAkP2RbHvAM6JCS+kB70EJ9vpvncdKy86S8GrGWD8fjcpqHVtbBgBM2BiSoLZ3mxxWTh21d3A6SYnsXb1BoGUcu2ezxde1zUVeZi/qwqdfhUQo/r7+8vU/mEqnrrA7ZWdYdKnQ0VXJuajNctSxbBuNdna1qXJQWjirE5zLwqMSqBO92vrTe0SF+qRazrLIUVsQ7WYgnS8rUr6rDsboJ4F45e4aFoVVv2TqvsFkLnWuwrfx5bdOb547WciTBXw4yvD7P6S7f/DNxn/eS6GpKWTI/Kvcyv2dAEoiikYxusEWkAw2f5ficX39Ik3ohAWSWG2ewIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    //public static String notify_url = "http://localhost:8080/pay/notify_url.jsp";
+    public static String notify_url = "http://2720y0y328.qicp.vip/notify";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    //public static String return_url = "http://localhost:8080/pay/return_url.jsp";
+    public static String return_url = "http://localhost:8080/#/";
 
     // 签名方式
     public static String sign_type = "RSA2";
@@ -30,9 +35,6 @@ public class AlipayConfig {
 
     // 支付宝网关
     public static String log_path = "C:\\";
-
-
-//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
     /**
      * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）

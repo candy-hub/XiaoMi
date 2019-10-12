@@ -46,6 +46,6 @@ public class OrderController {
     @RequestMapping("/deleteOrders/{oId}")
     public String deleteOrders(@PathVariable int oId){
         ordersService.deleteById(oId);
-        return "删除成功";
+        return "1";
     }
 }
