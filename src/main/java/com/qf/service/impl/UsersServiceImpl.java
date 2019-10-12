@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -88,6 +89,19 @@ public class UsersServiceImpl implements UsersService {
     public Users findByName(String uname) {
         List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(uname, uname, uname);
         return all.get(0);
+    }
+
+    @Override
+    public String updatePassword(Users users) {
+        String uPassword=users.getUPassword();
+        String uName=users.getUName();
+        int uid=users.getUId();
+        Optional<Users> byId = usersRepository.findById(uid);
+        Users u=byId.get();
+        String pass=md5Utils.getPassword(uName,uPassword);
+        u.setUPassword(pass);
+        usersRepository.save(u);
+        return "success";
     }
 
 }

@@ -20,4 +20,6 @@ public interface UsersService {
 
     Users findByName(String uname);
 
+    String updatePassword(Users users);
+
 }

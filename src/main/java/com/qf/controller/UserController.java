@@ -86,4 +86,11 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
+    public String updatePassword(@RequestBody Users users){
+
+        return usersService.updatePassword(users);
+
+    }
+
 }
