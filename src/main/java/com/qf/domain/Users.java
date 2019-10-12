@@ -1,5 +1,6 @@
 package com.qf.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,7 +31,7 @@ public class Users {
 
     @Column(name = "create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String createTime;//注册时间
+    private Date createTime;//注册时间
 
     @Column(name = "u_pic")
     private String uPic;
@@ -39,6 +40,8 @@ public class Users {
     private boolean uSex;  //1:男  0:女
 
     @Column(name = "u_birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date uBirthday;
 
     @Column(name = "u_money")

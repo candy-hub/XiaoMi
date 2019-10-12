@@ -53,10 +53,16 @@ public class UsersServiceImpl implements UsersService {
         String password=login.getPassword();
         //登录时进行MD5加密
         List<Users> all = usersRepository.findAllByUEmailOrUNameOrUTell(loginName, loginName, loginName);
-        String pass=md5Utils.getPassword(all.get(0).getUName(),password);
+        if(all.size()==0){
+            return null;
+        }else if (all.size()==1) {
+            String pass = md5Utils.getPassword(all.get(0).getUName(), password);
 
-        if (all.get(0).getUPassword().equals(pass)){
-            return all.get(0);
+            if (all.get(0).getUPassword().equals(pass)) {
+                return all.get(0);
+            }
+        }else {
+            return null;
         }
         return null;
     }

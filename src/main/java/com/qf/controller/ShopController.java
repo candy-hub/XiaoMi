@@ -36,7 +36,6 @@ public class ShopController {
     //一级菜单
     @RequestMapping(value = "/show1",method = RequestMethod.GET)
     public List<ShopKinds> show1(){
-        //System.out.println(shopKindsService.show1());
         return shopKindsService.show1();
     }
 
@@ -86,7 +85,6 @@ public class ShopController {
 
     @RequestMapping(value = "/orderShops/{page}/{size}/{name}",method = RequestMethod.POST)
     public Response orderShops(@PathVariable("page") int page, @PathVariable("size") int size,@PathVariable("name") String name){
-        System.out.println(name);
         return shopsService.orderShops(page,size,name);
     }
 
@@ -101,12 +99,10 @@ public class ShopController {
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public String upload(MultipartFile file){
 
-//        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
             return "fail";
         }else {
             String path = uploadUtils.upload(file);
-//            System.out.println(path);
             return path;
         }
 
