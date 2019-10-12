@@ -11,4 +11,6 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     List<Orders> findAllByUIdAndOStatue(int uid,int statue);
 
     List<Orders> findAllByUId(int uid);
+
+    Orders findByONumber(String ONumber);
 }

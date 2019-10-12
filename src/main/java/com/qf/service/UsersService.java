@@ -12,9 +12,10 @@ public interface UsersService {
 
     Users findById(int id);
 
-    Users findByRegisterName(Users users);
+    String findByRegisterName(Users users);
 
     Users login(Login login);
 
     String updateUser(Users users);
+
 }

@@ -52,8 +52,10 @@ public class OrdersServiceImpl implements OrdersService {
         orders.setUserName(users.getUName());
         orders.setUserTell(users.getUTell());
         orders.setUserAddress(users.getUAddress());
+        //System.out.println(orders);
         ordersRepository.save(orders);
         return orders;
+
     }
 
     @Override
@@ -82,6 +84,7 @@ public class OrdersServiceImpl implements OrdersService {
             orders.setUserName(users.getUName());
             orders.setUserTell(users.getUTell());
             orders.setUserAddress(users.getUAddress());
+            //System.out.println(orders);
             listOrders.add(orders);
             cartRepository.delete(cart);
         }
@@ -98,5 +101,15 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public void deleteById(int oId) {
         ordersRepository.deleteById(oId);
+    }
+
+    @Override
+    public Orders findByONumber(String ONumber) {
+        return ordersRepository.findByONumber(ONumber);
+    }
+
+    @Override
+    public Orders updateStatue(Orders orders) {
+        return ordersRepository.saveAndFlush(orders);
     }
 }

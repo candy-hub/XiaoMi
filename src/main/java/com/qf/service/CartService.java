@@ -14,4 +14,6 @@ public interface CartService {
     Cart updateCart(Cart cart);
 
     void deleteById(int cId);
+
+    int findCartCount(int uid);
 }

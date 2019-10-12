@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.CartMapper;
 import com.qf.dao.CartRepository;
 import com.qf.domain.Cart;
 import com.qf.domain.Shops;
@@ -15,6 +16,9 @@ public class CartServiceImpl implements CartService {
 
     @Resource
     private CartRepository cartRepository;
+
+    @Resource
+    private CartMapper cartMapper;
 
     @Override
     public List<Cart> findAll(int uId) {
@@ -52,5 +56,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public void deleteById(int cId) {
         cartRepository.deleteById(cId);
+    }
+
+    @Override
+    public int findCartCount(int uid) {
+        return cartMapper.findCartCount(uid);
     }
 }
