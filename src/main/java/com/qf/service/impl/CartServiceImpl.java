@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartService {
     public Cart addCart(AddCart cart,int uid) {
         Shops shop=cart.getShop();
         Cart c=new Cart();
-        Cart c2=cartRepository.findByShopName(shop.getShopName());
+        Cart c2=cartRepository.findByShopNameAndUId(shop.getShopName(),uid);
         if (c2!=null){
             c2.setShopCount(cart.getNum() + c2.getShopCount());
             c2.setShopTotal((cart.getTotal()).add(c2.getShopTotal()));

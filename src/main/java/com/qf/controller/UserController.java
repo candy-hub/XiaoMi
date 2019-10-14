@@ -1,5 +1,6 @@
 package com.qf.controller;
 
+import com.qf.dao.UsersRepository;
 import com.qf.domain.Users;
 import com.qf.response.Login;
 import com.qf.response.UserCode;
@@ -9,6 +10,7 @@ import com.qf.utils.EmailUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @RestController
@@ -22,6 +24,20 @@ public class UserController {
 
     @Resource
     private CodeService codeService;
+
+    @Resource
+    private UsersRepository usersRepository;
+
+
+    @RequestMapping(value = "/findAllUsers",method = RequestMethod.GET)
+    public List<Users> findAllUsers(){
+        return usersRepository.findAll();
+    }
+
+    @RequestMapping(value = "/checkUser",method = RequestMethod.POST)
+    public List<Users> checkUser(@RequestBody Users users){
+        return usersRepository.findAllByUNameAndUEmailAndUTell(users.getUName(),users.getUEmail(),users.getUTell());
+    }
 
 
     @RequestMapping(value = "/sendEmail",method = RequestMethod.POST)

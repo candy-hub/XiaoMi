@@ -57,6 +57,16 @@ public class EmailUtils {
         return "";
     }
 
+    public void sendPasswordEmail(String sendTo){
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setSubject("重置密码");
+        String pass = "新密码为123456";
+        simpleMailMessage.setText(pass);
+        simpleMailMessage.setFrom(sendFrom);
+        simpleMailMessage.setTo(sendTo);
+    }
+
+
     public static String randomCode(){
         Random random=new Random();
         StringBuffer sb=new StringBuffer();

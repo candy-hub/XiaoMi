@@ -41,25 +41,28 @@ public class OrdersServiceImpl implements OrdersService {
     public Orders submitForm1(AddCart addCart, int uid) {
         Optional<Users> byId = usersRepository.findById(uid);
         Users users=byId.get();
-        Shops shops=addCart.getShop();
-        String orderNumber=orderUtils.getOrder();
-        Orders orders=new Orders();
-        orders.setOStatue(0);
-        orders.setONumber(orderNumber);
-        orders.setShopName(shops.getShopName());
-        orders.setShopPic(shops.getShopPic());
-        orders.setShopNumber(addCart.getNum());  //购买商品数量
-        orders.setShopPrice(shops.getShopPrice());
-        orders.setShopFactory(shops.getFactory());
-        orders.setShopCount(addCart.getTotal());
-        orders.setUId(users.getUId());
-        orders.setUserName(users.getUName());
-        orders.setUserTell(users.getUTell());
-        orders.setUserAddress(users.getUAddress());
-        //System.out.println(orders);
-        ordersRepository.save(orders);
-        return orders;
-
+        if (users.getUAddress()!=null){
+            Shops shops=addCart.getShop();
+            String orderNumber=orderUtils.getOrder();
+            Orders orders=new Orders();
+            orders.setOStatue(0);
+            orders.setONumber(orderNumber);
+            orders.setShopName(shops.getShopName());
+            orders.setShopPic(shops.getShopPic());
+            orders.setShopNumber(addCart.getNum());  //购买商品数量
+            orders.setShopPrice(shops.getShopPrice());
+            orders.setShopFactory(shops.getFactory());
+            orders.setShopCount(addCart.getTotal());
+            orders.setUId(users.getUId());
+            orders.setUserName(users.getUName());
+            orders.setUserTell(users.getUTell());
+            orders.setUserAddress(users.getUAddress());
+            //System.out.println(orders);
+            ordersRepository.save(orders);
+            return orders;
+        }else {
+            return null;
+        }
     }
 
     @Override
@@ -70,31 +73,36 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> submitForm2(List<Cart> listCart,int uid) {
         Optional<Users> byId = usersRepository.findById(uid);
-        Users users=byId.get();
         List<Orders> listOrders=new ArrayList<>();
 
-        for(Cart cart:listCart){
-            Orders orders=new Orders();
-            String orderNumber=orderUtils.getOrder();
-            orders.setOStatue(0);
-            orders.setONumber(orderNumber);
-            orders.setShopName(cart.getShopName());
-            orders.setShopPic(cart.getShopPic());
-            orders.setShopNumber(cart.getShopCount());
-            orders.setShopPrice(cart.getShopPrice());
-            orders.setShopFactory(cart.getShopFactory());
-            orders.setShopCount(cart.getShopTotal());
-            orders.setUId(users.getUId());
-            orders.setUserName(users.getUName());
-            orders.setUserTell(users.getUTell());
-            orders.setUserAddress(users.getUAddress());
-            //System.out.println(orders);
-            listOrders.add(orders);
-            cartRepository.delete(cart);
-        }
+        Users users=byId.get();
+        if (users.getUAddress()!=null) {
+            for (Cart cart : listCart) {
+                Orders orders = new Orders();
+                String orderNumber = orderUtils.getOrder();
+                orders.setOStatue(0);
+                orders.setONumber(orderNumber);
+                orders.setShopName(cart.getShopName());
+                orders.setShopPic(cart.getShopPic());
+                orders.setShopNumber(cart.getShopCount());
+                orders.setShopPrice(cart.getShopPrice());
+                orders.setShopFactory(cart.getShopFactory());
+                orders.setShopCount(cart.getShopTotal());
+                orders.setUId(users.getUId());
+                orders.setUserName(users.getUName());
+                orders.setUserTell(users.getUTell());
+                orders.setUserAddress(users.getUAddress());
+                //System.out.println(orders);
+                listOrders.add(orders);
+                cartRepository.delete(cart);
+            }
 //        System.out.println(listOrders);
-        ordersRepository.saveAll(listOrders);
-        return listOrders;
+            ordersRepository.saveAll(listOrders);
+            return listOrders;
+        }else {
+            return null;
+        }
+
     }
 
     @Override
