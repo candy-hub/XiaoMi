@@ -47,7 +47,7 @@ public class OrdersServiceImpl implements OrdersService {
         orders.setOStatue(0);
         orders.setONumber(orderNumber);
         orders.setShopName(shops.getShopName());
-        orders.setShopPic(shops.getShopPic());
+        orders.setShopPic(shops.getShopBigPic());
         orders.setShopNumber(addCart.getNum());  //购买商品数量
         orders.setShopPrice(shops.getShopPrice());
         orders.setShopFactory(shops.getFactory());

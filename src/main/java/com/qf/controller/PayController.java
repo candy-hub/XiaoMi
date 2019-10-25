@@ -98,7 +98,7 @@ public class PayController {
             throw new AlipayApiException("app_id不一致");
         }
 
-        //System.out.println(orders);
+        System.out.println(orders);
         ordersService.updateStatue(orders);
     }
 }

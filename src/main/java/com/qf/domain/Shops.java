@@ -21,8 +21,6 @@ public class Shops {
     @Column(name = "shop_name")
     private String shopName;
 
-    @Column(name = "shop_pic")
-    private String shopPic;
 
     @Column(name = "shop_bigpic")
     private String shopBigPic;
