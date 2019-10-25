@@ -9,4 +9,5 @@ public interface UsersRepository extends JpaRepository<Users,Integer> {
 
     List<Users> findAllByUEmailOrUNameOrUTell(String uEmail, String uName, String uTell);
 
+    List<Users> findAllByUNameAndUEmailAndUTell(String uName, String uEmail, String uTell);
 }
